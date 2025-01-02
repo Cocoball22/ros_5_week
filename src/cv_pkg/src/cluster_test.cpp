@@ -4,7 +4,22 @@ int main(int argc, char **argv)
 {
   ros::init(argc, argv, "cluster_test");     // 노드 이름 초기화
   ros::NodeHandle nh;                  // ROS 시스템과 통신을 위한 노드 핸들
-  
+    
+    std::string imagePath = "../fruit/바나나1.jpeg";
+    cv::Mat image = cv::imread(imagePath, cv::IMREAD_COLOR);
+
+    if (image.empty()) 
+    {
+        std::cerr << "Failed to load image at: " << imagePath << std::endl;
+        return -1;
+    }
+
+    // 이미지 정보 출력
+    std::cout << "Image Size: " << image.cols << "x" << image.rows << std::endl;
+
+    cv::imshow("Loaded Image", image);
+    cv::Mat src = cv::imread("$(find)");
+
     // 메르센 트위스터 기반의 RNG 생성
     cv::RNG rng(cv::getTickCount());  // 초기 시드 값 설정 (Tick Count 사용)
 
