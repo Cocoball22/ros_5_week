@@ -1,7 +1,6 @@
 #include <ros/ros.h>			// ROS 기본 헤더 파일
-#include <std_msgs/String.h>
-#include <sstream>
-
+#include "std_msgs/String.h"
+#include "opencv2/opencv.hpp"
 int main(int argc, char **argv)
 {
   ros::init(argc, argv, "talker");     // 노드 이름 초기화

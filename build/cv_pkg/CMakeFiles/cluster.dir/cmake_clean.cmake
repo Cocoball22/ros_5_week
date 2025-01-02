@@ -1,0 +1,10 @@
+file(REMOVE_RECURSE
+  "/home/cona/catkin_ws/devel/lib/cv_pkg/cluster"
+  "/home/cona/catkin_ws/devel/lib/cv_pkg/cluster.pdb"
+  "CMakeFiles/cluster.dir/src/cluster.cpp.o"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/cluster.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()
