@@ -9,8 +9,6 @@
 /home/cona/catkin_ws/src/cv_pkg/include/cv_pkg/cv_pkg_node.hpp
 ros/ros.h
 -
-random
--
 opencv2/opencv.hpp
 /home/cona/catkin_ws/src/cv_pkg/include/cv_pkg/opencv2/opencv.hpp
 
