@@ -4,7 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/cona/catkin_ws/src/cv_pkg/src/cluster.cpp" "/home/cona/catkin_ws/build/cv_pkg/CMakeFiles/cluster.dir/src/cluster.cpp.o"
+  "/home/cona/catkin_ws/src/cv_pkg/src/FuncCluster.cpp" "/home/cona/catkin_ws/build/cv_pkg/CMakeFiles/cluster.dir/src/FuncCluster.cpp.o"
+  "/home/cona/catkin_ws/src/cv_pkg/src/MainCluster.cpp" "/home/cona/catkin_ws/build/cv_pkg/CMakeFiles/cluster.dir/src/MainCluster.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
