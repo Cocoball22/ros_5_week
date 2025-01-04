@@ -13,9 +13,8 @@ private:
     std::string path = "/home/cona/catkin_ws/src/cv_pkg/src/fruit-png/";
     // std::string input_image[20] = {"바나나1.png", "바나나2.png", "yellow.jpeg", "보라.png", "포도2.png"};
     std::string input_image[20] = {};
-    // std::string yellow_data[10] = {};
-    // std::string purple_data[10] = {};
-    // std::string red_data[10] = {};
+    std::string yellow_data[10] = {};
+
     cv::Mat image; // 이미지
     int k = 3;  // 클러스터 수
     uchar b[3] = {};

@@ -164,9 +164,10 @@ void::cluster::test2()
   if(num_1 > 0)
   {
     avg_data_1 = sum_data_1 / num_1;
+    current_centroids[0] = (cv::Vec3b)avg_data_1;
     std::cout << "avg_data_1: " << avg_data_1 << std::endl;
   }
-  
+  std::cout << current_centroids[0] << current_centroids[1] << current_centroids[2] << std::endl;
 }
 
 // void::cluster::test2()
