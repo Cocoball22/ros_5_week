@@ -2,13 +2,13 @@
 
 cluster::cluster(/* args */)
 {
- step1();
+ FirstCentroids();
 }
 cluster::~cluster()
 {
 }
 
-void cluster::test()
+void cluster::ImageRead()
 {
   printf("start\n");
 
@@ -27,14 +27,14 @@ void cluster::test()
    for(; number < 22; number++)
    {
     image = cv::imread(input_image[number], cv::IMREAD_COLOR);
-    step2(image);
+    IamgeAverage(image);
    }
    printf("finish\n");
 
 }
 
 // 초기 중심점 설정 랜덤 centroids
-void cluster::step1()
+void cluster::FirstCentroids()
 {
   // 시드값을 얻기 위한 random_device 생성.
   std::random_device rd;
@@ -62,8 +62,8 @@ void cluster::step1()
     }
 }
 
-// 데이터를 군집에 할당
-void cluster::step2(cv::Mat image)
+// 이미지 평균
+void cluster::IamgeAverage(cv::Mat image)
 { 
   unsigned int sum_b = 0, sum_g = 0, sum_r = 0;
   uchar avg_b, avg_g, avg_r;
@@ -97,10 +97,11 @@ void cluster::step2(cv::Mat image)
   
   mean = {avg_b, avg_g, avg_r};
   std::cout << "image average: " <<  mean << std::endl;
-  step3(mean);
+  Clustring(mean);
 }
 
-void cluster::step3(cv::Vec3b mean) 
+// 클러스터링
+void cluster::Clustring(cv::Vec3b mean) 
 {
   double distance[3] = {};
 
@@ -119,20 +120,17 @@ void cluster::step3(cv::Vec3b mean)
     data_1[num_1] = mean;
     num_1++;
   }
-  else if(distance[1] == min)
+  if(distance[1] == min)
   {
     data_2[num_2] = mean;
     num_2++;
   }
-  else if(distance[2] == min)
+  if(distance[2] == min)
   {
     data_3[num_3] = mean;
     num_3++;
   }
-  else
-  {
-    std::cout << "error" << std::endl;
-  }
+
   std::cout << "num_1: " << num_1 << " "  << "num_2: " << num_2  << " " << "num_3: " << num_3 << " " << std::endl;
 }
 
@@ -142,32 +140,55 @@ double cluster::getDistance(const cv::Vec3b& p1, const cv::Vec3b& p2)
   return std::sqrt(std::pow(p1[0] - p2[0], 2) + std::pow(p1[1] - p2[1], 2) + std::pow(p1[2] - p2[2], 2));
 }
 
-void::cluster::test2()
+void::cluster::FindCentroid()
 {
-  cv::Vec3i sum_data_1;
-  cv::Vec3i avg_data_1;
-  for(int i = 0; i<num_1; i++)
+  cv::Vec3i sum_data_1, sum_data_2, sum_data_3;
+  cv::Vec3i avg_data_1, avg_data_2, avg_data_3;
+  for(int i = 0; i< num_1; i++)
   {
     std::cout << "data_1: " << data_1[i] << std::endl;
     sum_data_1 = sum_data_1 + (cv::Vec3i)data_1[i];
   }
-  for(int i = 0; i<num_2; i++)
+  for(int i = 0; i< num_2; i++)
   {
     std::cout << "data_2: " << data_2[i] << std::endl;
+    sum_data_2 = sum_data_2 + (cv::Vec3i)data_2[i];
   }
-  for(int i = 0; i<num_3; i++)
+  for(int i = 0; i< num_3; i++)
   {
     std::cout << "data_3: " << data_3[i] << std::endl;
+    sum_data_3 = sum_data_3 + (cv::Vec3i)data_3[i];
   }
   std::cout << "sum_data_1: " << sum_data_1 << std::endl;
-  
+  std::cout << "sum_data_2: " << sum_data_2 << std::endl;
+  std::cout << "sum_data_3: " << sum_data_3 << std::endl;
+
   if(num_1 > 0)
   {
     avg_data_1 = sum_data_1 / num_1;
     current_centroids[0] = (cv::Vec3b)avg_data_1;
     std::cout << "avg_data_1: " << avg_data_1 << std::endl;
   }
-  std::cout << current_centroids[0] << current_centroids[1] << current_centroids[2] << std::endl;
+  if(num_2 > 0)
+  {
+    avg_data_2 = sum_data_2 / num_2;
+    current_centroids[1] = (cv::Vec3b)avg_data_2;
+    std::cout << "avg_data_2: " << avg_data_2 << std::endl;
+  }
+  if(num_3 > 0)
+  {
+    avg_data_3 = sum_data_3 / num_3;
+    current_centroids[2] = (cv::Vec3b)avg_data_3;
+    std::cout << "avg_data_3: " << avg_data_3 << std::endl;
+  }
+
+  std::cout << "now: " << current_centroids[0] << current_centroids[1] << current_centroids[2] << std::endl;
+  std::cout << "past: " << past_centroids[0] << past_centroids[1] << past_centroids[2] << std::endl; 
+
+  if(current_centroids == past_centroids)
+  {
+    flag_p = 1;
+  }
 }
 
 // void::cluster::test2()

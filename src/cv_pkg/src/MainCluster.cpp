@@ -6,7 +6,12 @@ int main(int argc, char **argv)
 
   cluster cl;
 
-  cl.test();
-  cl.test2();
+  cl.ImageRead();
+  cl.FindCentroid();
+  while(ros::ok() && !cl.flag_p)
+  {
+   
+  }
+  
 }
 

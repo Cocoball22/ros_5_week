@@ -28,16 +28,18 @@ private:
     cv::Vec3b data_1[22] = {};
     cv::Vec3b data_2[22] = {};
     cv::Vec3b data_3[22] = {};
+   
 public:
     cluster(/* args */);
     ~cluster();
 
-    void test();
-    void test2();
-    void step1();
-    void step2(cv::Mat image);
-    void step3(cv::Vec3b mean);
+    void ImageRead();
+    void FindCentroid();
+    void FirstCentroids();
+    void IamgeAverage(cv::Mat image);
+    void Clustring(cv::Vec3b mean);
     double getDistance(const cv::Vec3b& p1, const cv::Vec3b& p2);
+    bool flag_p = false;
 };
 
 #endif
