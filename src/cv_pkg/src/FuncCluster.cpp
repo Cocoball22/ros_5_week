@@ -159,7 +159,7 @@ void::cluster::test2()
   {
     std::cout << "data_3: " << data_3[i] << std::endl;
   }
-  std::cout << "sum_centroid_1: " << sum_data_1 << std::endl;
+  std::cout << "sum_data_1: " << sum_data_1 << std::endl;
   
   if(num_1 > 0)
   {
