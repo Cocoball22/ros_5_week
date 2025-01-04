@@ -13,9 +13,9 @@ private:
     std::string path = "/home/cona/catkin_ws/src/cv_pkg/src/fruit-png/";
     // std::string input_image[20] = {"바나나1.png", "바나나2.png", "yellow.jpeg", "보라.png", "포도2.png"};
     std::string input_image[20] = {};
-    std::string yellow_data[10] = {};
-    std::string purple_data[10] = {};
-    std::string red_data[10] = {};
+    // std::string yellow_data[10] = {};
+    // std::string purple_data[10] = {};
+    // std::string red_data[10] = {};
     cv::Mat image; // 이미지
     int k = 3;  // 클러스터 수
     uchar b[3] = {};
@@ -27,9 +27,9 @@ private:
     cv::Vec3b mean;
     cv::Vec3b current_centroids[3] = {};
     cv::Vec3b past_centroids[3] = {};
-    cv::Vec3b centroid_1[22] = {};
-    cv::Vec3b centroid_2[22] = {};
-    cv::Vec3b centroid_3[22] = {};
+    cv::Vec3b data_1[22] = {};
+    cv::Vec3b data_2[22] = {};
+    cv::Vec3b data_3[22] = {};
 public:
     cluster(/* args */);
     ~cluster();

@@ -56,7 +56,7 @@ void cluster::step1()
       g[i] = dist_g(gen);
       r[i] = dist_r(gen);
       current_centroids[i] = {b[i], g[i], r[i]};
-      // past_centroids[i] = current_centroids[i]; // 이전 값 저장
+      past_centroids[i] = current_centroids[i]; // 이전 값 저장
       std::cout << "current_centroids:" << current_centroids[i] << std::endl;
       // std::cout << "past_centroids:" << past_centroids[i] << std::endl;
     }
@@ -116,17 +116,17 @@ void cluster::step3(cv::Vec3b mean)
 
   if(distance[0] == min)
   {
-    centroid_1[num_1] = mean;
+    data_1[num_1] = mean;
     num_1++;
   }
   else if(distance[1] == min)
   {
-    centroid_2[num_2] = mean;
+    data_2[num_2] = mean;
     num_2++;
   }
   else if(distance[2] == min)
   {
-    centroid_3[num_3] = mean;
+    data_3[num_3] = mean;
     num_3++;
   }
   else
@@ -144,18 +144,29 @@ double cluster::getDistance(const cv::Vec3b& p1, const cv::Vec3b& p2)
 
 void::cluster::test2()
 {
+  cv::Vec3i sum_data_1;
+  cv::Vec3i avg_data_1;
   for(int i = 0; i<num_1; i++)
   {
-    std::cout << "centroid_1: " << centroid_1[i] << std::endl;
+    std::cout << "data_1: " << data_1[i] << std::endl;
+    sum_data_1 = sum_data_1 + (cv::Vec3i)data_1[i];
   }
   for(int i = 0; i<num_2; i++)
   {
-    std::cout << "centroid_2: " << centroid_2[i] << std::endl;
+    std::cout << "data_2: " << data_2[i] << std::endl;
   }
   for(int i = 0; i<num_3; i++)
   {
-    std::cout << "centroid_3: " << centroid_3[i] << std::endl;
+    std::cout << "data_3: " << data_3[i] << std::endl;
   }
+  std::cout << "sum_centroid_1: " << sum_data_1 << std::endl;
+  
+  if(num_1 > 0)
+  {
+    avg_data_1 = sum_data_1 / num_1;
+    std::cout << "avg_data_1: " << avg_data_1 << std::endl;
+  }
+  
 }
 
 // void::cluster::test2()
