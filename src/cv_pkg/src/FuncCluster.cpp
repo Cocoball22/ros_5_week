@@ -24,7 +24,7 @@ void cluster::test()
     itr++;
   }
 
-   for(; number < 20; number++)
+   for(; number < 22; number++)
    {
     image = cv::imread(input_image[number], cv::IMREAD_COLOR);
     step2(image);
@@ -55,8 +55,10 @@ void cluster::step1()
       b[i] = dist_b(gen);
       g[i] = dist_g(gen);
       r[i] = dist_r(gen);
-      centroids[i] = {b[i], g[i], r[i]};
-      std::cout << "centroid:" << centroids[i] << std::endl;
+      current_centroids[i] = {b[i], g[i], r[i]};
+      // past_centroids[i] = current_centroids[i]; // 이전 값 저장
+      std::cout << "current_centroids:" << current_centroids[i] << std::endl;
+      // std::cout << "past_centroids:" << past_centroids[i] << std::endl;
     }
 }
 
@@ -100,18 +102,60 @@ void cluster::step2(cv::Mat image)
 
 void cluster::step3(cv::Vec3b mean) 
 {
+  double distance[3] = {};
+
   for(int k = 0; k < 3; k++)
   {
-    std::cout << "centroid:" << centroids[k] << std::endl;
-    double d = getDistance(mean, centroids[k]);
-    std::cout << "d:" << d << std::endl;
+    std::cout << "current_centroids: " << current_centroids[k] << std::endl;
+    distance[k] = getDistance(mean, current_centroids[k]);
   }
+  std::cout <<"distance: " << distance[0] << " " << distance[1] << " " << distance[2] << std::endl;
+  double min =  distance[0] < distance[1] ? (distance[0] < distance[2] ? distance[0] : distance[2]) : (distance[1] < distance[2] ? distance[1] : distance[2]);
+  // printf("min: %f \n", distance[0] < distance[1] ? (distance[0] < distance[2] ? distance[0] : distance[2]) : (distance[1] < distance[2] ? distance[1] : distance[2]));
+  printf("min: %f \n", min);
+
+  if(distance[0] == min)
+  {
+    centroid_1[num_1] = mean;
+    num_1++;
+  }
+  else if(distance[1] == min)
+  {
+    centroid_2[num_2] = mean;
+    num_2++;
+  }
+  else if(distance[2] == min)
+  {
+    centroid_3[num_3] = mean;
+    num_3++;
+  }
+  else
+  {
+    std::cout << "error" << std::endl;
+  }
+  std::cout << "num_1: " << num_1 << " "  << "num_2: " << num_2  << " " << "num_3: " << num_3 << " " << std::endl;
 }
 
 
 double cluster::getDistance(const cv::Vec3b& p1, const cv::Vec3b& p2) 
 {
   return std::sqrt(std::pow(p1[0] - p2[0], 2) + std::pow(p1[1] - p2[1], 2) + std::pow(p1[2] - p2[2], 2));
+}
+
+void::cluster::test2()
+{
+  for(int i = 0; i<num_1; i++)
+  {
+    std::cout << "centroid_1: " << centroid_1[i] << std::endl;
+  }
+  for(int i = 0; i<num_2; i++)
+  {
+    std::cout << "centroid_2: " << centroid_2[i] << std::endl;
+  }
+  for(int i = 0; i<num_3; i++)
+  {
+    std::cout << "centroid_3: " << centroid_3[i] << std::endl;
+  }
 }
 
 // void::cluster::test2()

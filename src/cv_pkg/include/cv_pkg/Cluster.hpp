@@ -22,10 +22,14 @@ private:
     uchar g[3] = {};
     uchar r[3] = {};
     int number = 0;
+    int num_1 = 0, num_2 = 0, num_3 = 0;
     bool c = true;
     cv::Vec3b mean;
-    cv::Vec3b centroids[3] = {};
-
+    cv::Vec3b current_centroids[3] = {};
+    cv::Vec3b past_centroids[3] = {};
+    cv::Vec3b centroid_1[22] = {};
+    cv::Vec3b centroid_2[22] = {};
+    cv::Vec3b centroid_3[22] = {};
 public:
     cluster(/* args */);
     ~cluster();
