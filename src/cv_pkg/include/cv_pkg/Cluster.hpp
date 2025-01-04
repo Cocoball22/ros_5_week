@@ -18,10 +18,14 @@ private:
     std::string red_data[10] = {};
     cv::Mat image; // 이미지
     int k = 3;  // 클러스터 수
+    uchar b[3] = {};
+    uchar g[3] = {};
+    uchar r[3] = {};
     int number = 0;
     bool c = true;
-    std::vector<cv::Vec3b> centroids;  // 클러스터 중심점
     cv::Vec3b mean;
+    cv::Vec3b centroids[3] = {};
+
 public:
     cluster(/* args */);
     ~cluster();
@@ -31,6 +35,7 @@ public:
     void step1();
     void step2(cv::Mat image);
     void step3(cv::Vec3b mean);
+    double getDistance(const cv::Vec3b& p1, const cv::Vec3b& p2);
 };
 
 #endif

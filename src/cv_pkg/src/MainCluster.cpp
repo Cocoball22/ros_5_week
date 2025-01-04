@@ -5,8 +5,7 @@ int main(int argc, char **argv)
   ros::NodeHandle nh;                  // ROS 시스템과 통신을 위한 노드 핸들
 
   cluster cl;
-
-  cl.test2();
+  
   cl.test();
 }
 
