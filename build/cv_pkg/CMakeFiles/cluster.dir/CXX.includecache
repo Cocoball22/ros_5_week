@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/cona/catkin_ws/src/cv_pkg/include/cv_pkg/Cluster.hpp
+/home/hyun/ros_5_week/src/cv_pkg/include/cv_pkg/Cluster.hpp
 ros/ros.h
 -
 opencv2/opencv.hpp
-/home/cona/catkin_ws/src/cv_pkg/include/cv_pkg/opencv2/opencv.hpp
+/home/hyun/ros_5_week/src/cv_pkg/include/cv_pkg/opencv2/opencv.hpp
 iostream
 -
 random
@@ -18,7 +18,7 @@ random
 filesystem
 -
 
-/home/cona/catkin_ws/src/cv_pkg/src/FuncCluster.cpp
+/home/hyun/ros_5_week/src/cv_pkg/src/FuncCluster.cpp
 cv_pkg/Cluster.hpp
 -
 

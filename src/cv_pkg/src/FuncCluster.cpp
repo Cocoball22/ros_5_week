@@ -12,6 +12,7 @@ void cluster::ImageRead()
 {
   printf("start\n");
 
+
   int n = 0;
   std::filesystem::directory_iterator itr(path);
 
@@ -29,8 +30,10 @@ void cluster::ImageRead()
     image = cv::imread(input_image[number], cv::IMREAD_COLOR);
     IamgeAverage(image);
    }
-   printf("finish\n");
-
+  printf("finish\n");
+  // num_1 = 0, num_2 = 0, num_3 = 0;
+  // printf("clear num_1,num_2,num_3\n");
+  
 }
 
 // 초기 중심점 설정 랜덤 centroids
@@ -67,8 +70,8 @@ void cluster::IamgeAverage(cv::Mat image)
 { 
   unsigned int sum_b = 0, sum_g = 0, sum_r = 0;
   uchar avg_b, avg_g, avg_r;
-  int count;
-  cv::Vec3b mean;
+  int count = 0, cnt = 0;
+
   for(int row = 0; row < image.rows; row++)
   {
     uchar* pointer_row = image.ptr<uchar>(row); 
@@ -95,12 +98,13 @@ void cluster::IamgeAverage(cv::Mat image)
 
   // printf("%d,%d,%d\n",sum_b, sum_g, sum_r);
   
-  mean = {avg_b, avg_g, avg_r};
-  std::cout << "image average: " <<  mean << std::endl;
-  Clustring(mean);
+  mean[cnt] = {avg_b, avg_g, avg_r};
+  std::cout << "image average: " <<  mean[cnt] << std::endl;
+  Clustring(mean[cnt]);
+  cnt++;
 }
 
-// 클러스터링
+// 모든것이 끝난 뒤에 분류한 클러스터링
 void cluster::Clustring(cv::Vec3b mean) 
 {
   double distance[3] = {};
@@ -119,18 +123,21 @@ void cluster::Clustring(cv::Vec3b mean)
   {
     data_1[num_1] = mean;
     num_1++;
+    
   }
   if(distance[1] == min)
   {
     data_2[num_2] = mean;
     num_2++;
+    
   }
   if(distance[2] == min)
   {
     data_3[num_3] = mean;
     num_3++;
+   
   }
-
+  
   std::cout << "num_1: " << num_1 << " "  << "num_2: " << num_2  << " " << "num_3: " << num_3 << " " << std::endl;
 }
 
@@ -140,21 +147,21 @@ double cluster::getDistance(const cv::Vec3b& p1, const cv::Vec3b& p2)
   return std::sqrt(std::pow(p1[0] - p2[0], 2) + std::pow(p1[1] - p2[1], 2) + std::pow(p1[2] - p2[2], 2));
 }
 
-void::cluster::FindCentroid()
+void cluster::FindCentroid()
 {
   cv::Vec3i sum_data_1, sum_data_2, sum_data_3;
   cv::Vec3i avg_data_1, avg_data_2, avg_data_3;
-  for(int i = 0; i< num_1; i++)
+  for(int i = 0; i< F_num_1; i++)
   {
     std::cout << "data_1: " << data_1[i] << std::endl;
     sum_data_1 = sum_data_1 + (cv::Vec3i)data_1[i];
   }
-  for(int i = 0; i< num_2; i++)
+  for(int i = 0; i< F_num_2; i++)
   {
     std::cout << "data_2: " << data_2[i] << std::endl;
     sum_data_2 = sum_data_2 + (cv::Vec3i)data_2[i];
   }
-  for(int i = 0; i< num_3; i++)
+  for(int i = 0; i< F_num_3; i++)
   {
     std::cout << "data_3: " << data_3[i] << std::endl;
     sum_data_3 = sum_data_3 + (cv::Vec3i)data_3[i];
@@ -163,21 +170,21 @@ void::cluster::FindCentroid()
   std::cout << "sum_data_2: " << sum_data_2 << std::endl;
   std::cout << "sum_data_3: " << sum_data_3 << std::endl;
 
-  if(num_1 > 0)
+  if(F_num_1 > 0)
   {
-    avg_data_1 = sum_data_1 / num_1;
+    avg_data_1 = sum_data_1 / F_num_1;
     current_centroids[0] = (cv::Vec3b)avg_data_1;
     std::cout << "avg_data_1: " << avg_data_1 << std::endl;
   }
-  if(num_2 > 0)
+  if(F_num_2 > 0)
   {
-    avg_data_2 = sum_data_2 / num_2;
+    avg_data_2 = sum_data_2 / F_num_2;
     current_centroids[1] = (cv::Vec3b)avg_data_2;
     std::cout << "avg_data_2: " << avg_data_2 << std::endl;
   }
-  if(num_3 > 0)
+  if(F_num_3 > 0)
   {
-    avg_data_3 = sum_data_3 / num_3;
+    avg_data_3 = sum_data_3 / F_num_3;
     current_centroids[2] = (cv::Vec3b)avg_data_3;
     std::cout << "avg_data_3: " << avg_data_3 << std::endl;
   }
@@ -189,22 +196,49 @@ void::cluster::FindCentroid()
   {
     flag_p = 1;
   }
+
 }
 
-// void::cluster::test2()
-// {
-//   // std::filesystem::path p(path+"바나나1.png");
+void cluster::NewCentroid()
+{
 
-//   // std::cout << "내 현재 경로 : " << std::filesystem::current_path() << std::endl;
-//   // std::cout << "Does " << p << " exist? [" << std::boolalpha
-//   //           << std::filesystem::exists(p) << "]" << std::endl;
-//   // std::cout << "Is " << p << " file? [" << std::filesystem::is_regular_file(p)
-//   //           << "]" << std::endl;
-//   // std::cout << "Is " << p << " directory? [" << std::filesystem::is_directory(p)
-//   //           << "]" << std::endl;
+  printf("new centroid\n");
+  F_num_1 = num_1;
+  F_num_2 = num_2;
+  F_num_3 = num_3;
+  printf("F_num_1: %d F_num_2: %d F_num_3: %d\n",F_num_1,F_num_2,F_num_3);
+  num_1 = 0, num_2 = 0, num_3 = 0;
 
-//   // std::cout << "상대 경로 : " << p.relative_path() << std::endl;
+  for (int i = 0; i < F_num_1; i++)
+  {
+    Clustring(data_1[i]);
+  }
 
+  for (int i = 0; i < F_num_2; i++)
+  {
+    Clustring(data_2[i]);
+  }
   
+  for (int i = 0; i < F_num_3; i++)
+  {
+    Clustring(data_3[i]);
+  }
+  
+}
 
+// void cluster::RunClustering()
+// {
+//     while (flag_p == 0) 
+//     {
+//         FindCentroid(); // 중심점 계산
+//         NewCentroid();  // 클러스터링 반복
+//         FindCentroid(); // 중심점 계산
+//         // 클러스터링이 완료되었는지 확인
+//         if (current_centroids == past_centroids) 
+//         {
+//             flag_p = 1;
+//         }
+//     }
+
+//     printf("Clustering process completed.\n");
 // }

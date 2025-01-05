@@ -8,10 +8,17 @@ int main(int argc, char **argv)
 
   cl.ImageRead();
   cl.FindCentroid();
-  while(ros::ok() && !cl.flag_p)
-  {
-   
-  }
-  
+  cl.NewCentroid();
+  cl.FindCentroid();
+  cl.NewCentroid();
+  cl.FindCentroid();
+  cl.NewCentroid();
+  cl.FindCentroid();
+  cl.NewCentroid();
+  cl.FindCentroid();
+  cl.NewCentroid();
+  cl.FindCentroid();
+  cl.NewCentroid();
+
 }
 
