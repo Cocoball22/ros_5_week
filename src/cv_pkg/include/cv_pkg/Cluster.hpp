@@ -21,7 +21,7 @@ private:
     uchar r[3] = {};
     int number = 0, bun = 0;
     int num_1 = 0, num_2 = 0, num_3 = 0;
-    bool falg_p = false;
+    bool flag_p = false;
     cv::Vec3b mean[22];
     cv::Vec3b current_centroids[3] = {};
     cv::Vec3b past_centroids[3] = {};

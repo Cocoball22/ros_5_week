@@ -25,68 +25,39 @@ void cluster::ImageRead()
     itr++;
   }
 
-   for(; number < 22; number++)
-   {
-    image = cv::imread(input_image[number], cv::IMREAD_COLOR);
-    IamgeAverage(image);
-   }
-
-  FindCentroid();
-
-  // 한 번 더 클러스터링 수행
-  number = 0;
-  num_1 = 0; num_2 = 0; num_3 = 0;
-  
-  for(; number < 22; number++)
+  // 반복 시작
+  while (ros::ok() && !flag_p)
   {
-    image = cv::imread(input_image[number], cv::IMREAD_COLOR);
-    IamgeAverage(image);
-  }
-  
-  // 최종 중심점 계산
-  FindCentroid();
+    // 1. 현재 중심점 저장
+    for(int i = 0; i < k; i++)
+    {
+      past_centroids[i] = current_centroids[i];
+    }
 
-  // 한 번 더 클러스터링 수행
-  number = 0;
-  num_1 = 0; num_2 = 0; num_3 = 0;
-  
-  for(; number < 22; number++)
-  {
-    image = cv::imread(input_image[number], cv::IMREAD_COLOR);
-    IamgeAverage(image);
-  }
-  
-  // 최종 중심점 계산
-  FindCentroid();
+    // 2. 클러스터링 및 횟수 초기화
+    number = 0;
+    num_1 = 0; num_2 = 0; num_3 = 0;
+    for(; number < 22; number++)
+    {
+      image = cv::imread(input_image[number], cv::IMREAD_COLOR);
+      IamgeAverage(image);
+    }
+    
+    // 3. 새로운 중심점 계산
+    FindCentroid();
 
-   // 한 번 더 클러스터링 수행
-  number = 0;
-  num_1 = 0; num_2 = 0; num_3 = 0;
-  
-  for(; number < 22; number++)
-  {
-    image = cv::imread(input_image[number], cv::IMREAD_COLOR);
-    IamgeAverage(image);
-  }
-  
-  // 최종 중심점 계산
-  FindCentroid();
+    bun++;
+    std::cout << "bunsu: " << bun << std::endl;
 
-   // 한 번 더 클러스터링 수행
-  number = 0;
-  num_1 = 0; num_2 = 0; num_3 = 0;
-  
-  for(; number < 22; number++)
-  {
-    image = cv::imread(input_image[number], cv::IMREAD_COLOR);
-    IamgeAverage(image);
+    // 4. 이전 중심점이랑 현재 중심점 비교
+    if(past_centroids[0] == current_centroids[0] && past_centroids[1] == current_centroids[1] && past_centroids[2] == current_centroids[2])
+    {
+      flag_p = true;  // 같으면 끝내기
+    }
+
+    // 다르면 계속 반복
   }
-  
-  // 최종 중심점 계산
-  FindCentroid();
-  
   printf("finish\n");
-  
 }
 
 // 초기 중심점 설정 랜덤 centroids
@@ -239,17 +210,7 @@ void cluster::FindCentroid()
     current_centroids[2] = (cv::Vec3b)avg_data_3;
     std::cout << "avg_data_3: " << avg_data_3 << std::endl;
   }
-
-  std::cout << "now: " << current_centroids[0] << current_centroids[1] << current_centroids[2] << std::endl;
-  std::cout << "past: " << past_centroids[0] << past_centroids[1] << past_centroids[2] << std::endl; 
-
-  for(int i = 0; i < k; i++)
-  {
-    past_centroids[i] = current_centroids[i];
-  }
-
-  bun++;
-  std::cout << "change: " << bun << " " << std::endl;
+  
   std::cout << "now: " << current_centroids[0] << current_centroids[1] << current_centroids[2] << std::endl;
   std::cout << "past: " << past_centroids[0] << past_centroids[1] << past_centroids[2] << std::endl; 
 }
