@@ -30,9 +30,10 @@ void cluster::ImageRead()
     image = cv::imread(input_image[number], cv::IMREAD_COLOR);
     IamgeAverage(image);
    }
+
+  FindCentroid();
+  
   printf("finish\n");
-  // num_1 = 0, num_2 = 0, num_3 = 0;
-  // printf("clear num_1,num_2,num_3\n");
   
 }
 
@@ -60,8 +61,6 @@ void cluster::FirstCentroids()
       r[i] = dist_r(gen);
       current_centroids[i] = {b[i], g[i], r[i]};
       past_centroids[i] = current_centroids[i]; // 이전 값 저장
-      std::cout << "current_centroids:" << current_centroids[i] << std::endl;
-      // std::cout << "past_centroids:" << past_centroids[i] << std::endl;
     }
 }
 
@@ -139,6 +138,7 @@ void cluster::Clustring(cv::Vec3b mean)
   }
   
   std::cout << "num_1: " << num_1 << " "  << "num_2: " << num_2  << " " << "num_3: " << num_3 << " " << std::endl;
+
 }
 
 
@@ -151,17 +151,17 @@ void cluster::FindCentroid()
 {
   cv::Vec3i sum_data_1, sum_data_2, sum_data_3;
   cv::Vec3i avg_data_1, avg_data_2, avg_data_3;
-  for(int i = 0; i< F_num_1; i++)
+  for(int i = 0; i< num_1; i++)
   {
     std::cout << "data_1: " << data_1[i] << std::endl;
     sum_data_1 = sum_data_1 + (cv::Vec3i)data_1[i];
   }
-  for(int i = 0; i< F_num_2; i++)
+  for(int i = 0; i< num_2; i++)
   {
     std::cout << "data_2: " << data_2[i] << std::endl;
     sum_data_2 = sum_data_2 + (cv::Vec3i)data_2[i];
   }
-  for(int i = 0; i< F_num_3; i++)
+  for(int i = 0; i< num_3; i++)
   {
     std::cout << "data_3: " << data_3[i] << std::endl;
     sum_data_3 = sum_data_3 + (cv::Vec3i)data_3[i];
@@ -170,21 +170,21 @@ void cluster::FindCentroid()
   std::cout << "sum_data_2: " << sum_data_2 << std::endl;
   std::cout << "sum_data_3: " << sum_data_3 << std::endl;
 
-  if(F_num_1 > 0)
+  if(num_1 > 0)
   {
-    avg_data_1 = sum_data_1 / F_num_1;
+    avg_data_1 = sum_data_1 / num_1;
     current_centroids[0] = (cv::Vec3b)avg_data_1;
     std::cout << "avg_data_1: " << avg_data_1 << std::endl;
   }
-  if(F_num_2 > 0)
+  if(num_2 > 0)
   {
-    avg_data_2 = sum_data_2 / F_num_2;
+    avg_data_2 = sum_data_2 / num_2;
     current_centroids[1] = (cv::Vec3b)avg_data_2;
     std::cout << "avg_data_2: " << avg_data_2 << std::endl;
   }
-  if(F_num_3 > 0)
+  if(num_3 > 0)
   {
-    avg_data_3 = sum_data_3 / F_num_3;
+    avg_data_3 = sum_data_3 / num_3;
     current_centroids[2] = (cv::Vec3b)avg_data_3;
     std::cout << "avg_data_3: " << avg_data_3 << std::endl;
   }
@@ -192,53 +192,14 @@ void cluster::FindCentroid()
   std::cout << "now: " << current_centroids[0] << current_centroids[1] << current_centroids[2] << std::endl;
   std::cout << "past: " << past_centroids[0] << past_centroids[1] << past_centroids[2] << std::endl; 
 
-  if(current_centroids == past_centroids)
+  for(int i = 0; i < k; i++)
   {
-    flag_p = 1;
+    past_centroids[i] = current_centroids[i];
   }
 
-}
+  std::cout << "change" << std::endl;
+  std::cout << "now: " << current_centroids[0] << current_centroids[1] << current_centroids[2] << std::endl;
+  std::cout << "past: " << past_centroids[0] << past_centroids[1] << past_centroids[2] << std::endl; 
 
-void cluster::NewCentroid()
-{
-
-  printf("new centroid\n");
-  F_num_1 = num_1;
-  F_num_2 = num_2;
-  F_num_3 = num_3;
-  printf("F_num_1: %d F_num_2: %d F_num_3: %d\n",F_num_1,F_num_2,F_num_3);
   num_1 = 0, num_2 = 0, num_3 = 0;
-
-  for (int i = 0; i < F_num_1; i++)
-  {
-    Clustring(data_1[i]);
-  }
-
-  for (int i = 0; i < F_num_2; i++)
-  {
-    Clustring(data_2[i]);
-  }
-  
-  for (int i = 0; i < F_num_3; i++)
-  {
-    Clustring(data_3[i]);
-  }
-  
 }
-
-// void cluster::RunClustering()
-// {
-//     while (flag_p == 0) 
-//     {
-//         FindCentroid(); // 중심점 계산
-//         NewCentroid();  // 클러스터링 반복
-//         FindCentroid(); // 중심점 계산
-//         // 클러스터링이 완료되었는지 확인
-//         if (current_centroids == past_centroids) 
-//         {
-//             flag_p = 1;
-//         }
-//     }
-
-//     printf("Clustering process completed.\n");
-// }

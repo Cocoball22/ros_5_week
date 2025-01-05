@@ -7,18 +7,5 @@ int main(int argc, char **argv)
   cluster cl;
 
   cl.ImageRead();
-  cl.FindCentroid();
-  cl.NewCentroid();
-  cl.FindCentroid();
-  cl.NewCentroid();
-  cl.FindCentroid();
-  cl.NewCentroid();
-  cl.FindCentroid();
-  cl.NewCentroid();
-  cl.FindCentroid();
-  cl.NewCentroid();
-  cl.FindCentroid();
-  cl.NewCentroid();
-
 }
 
