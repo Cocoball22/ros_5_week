@@ -32,6 +32,58 @@ void cluster::ImageRead()
    }
 
   FindCentroid();
+
+  // 한 번 더 클러스터링 수행
+  number = 0;
+  num_1 = 0; num_2 = 0; num_3 = 0;
+  
+  for(; number < 22; number++)
+  {
+    image = cv::imread(input_image[number], cv::IMREAD_COLOR);
+    IamgeAverage(image);
+  }
+  
+  // 최종 중심점 계산
+  FindCentroid();
+
+  // 한 번 더 클러스터링 수행
+  number = 0;
+  num_1 = 0; num_2 = 0; num_3 = 0;
+  
+  for(; number < 22; number++)
+  {
+    image = cv::imread(input_image[number], cv::IMREAD_COLOR);
+    IamgeAverage(image);
+  }
+  
+  // 최종 중심점 계산
+  FindCentroid();
+
+   // 한 번 더 클러스터링 수행
+  number = 0;
+  num_1 = 0; num_2 = 0; num_3 = 0;
+  
+  for(; number < 22; number++)
+  {
+    image = cv::imread(input_image[number], cv::IMREAD_COLOR);
+    IamgeAverage(image);
+  }
+  
+  // 최종 중심점 계산
+  FindCentroid();
+
+   // 한 번 더 클러스터링 수행
+  number = 0;
+  num_1 = 0; num_2 = 0; num_3 = 0;
+  
+  for(; number < 22; number++)
+  {
+    image = cv::imread(input_image[number], cv::IMREAD_COLOR);
+    IamgeAverage(image);
+  }
+  
+  // 최종 중심점 계산
+  FindCentroid();
   
   printf("finish\n");
   
@@ -115,7 +167,7 @@ void cluster::Clustring(cv::Vec3b mean)
   }
   std::cout <<"distance: " << distance[0] << " " << distance[1] << " " << distance[2] << std::endl;
   double min =  distance[0] < distance[1] ? (distance[0] < distance[2] ? distance[0] : distance[2]) : (distance[1] < distance[2] ? distance[1] : distance[2]);
-  // printf("min: %f \n", distance[0] < distance[1] ? (distance[0] < distance[2] ? distance[0] : distance[2]) : (distance[1] < distance[2] ? distance[1] : distance[2]));
+ 
   printf("min: %f \n", min);
 
   if(distance[0] == min)
@@ -136,7 +188,6 @@ void cluster::Clustring(cv::Vec3b mean)
     num_3++;
    
   }
-  
   std::cout << "num_1: " << num_1 << " "  << "num_2: " << num_2  << " " << "num_3: " << num_3 << " " << std::endl;
 
 }
@@ -197,9 +248,8 @@ void cluster::FindCentroid()
     past_centroids[i] = current_centroids[i];
   }
 
-  std::cout << "change" << std::endl;
+  bun++;
+  std::cout << "change: " << bun << " " << std::endl;
   std::cout << "now: " << current_centroids[0] << current_centroids[1] << current_centroids[2] << std::endl;
   std::cout << "past: " << past_centroids[0] << past_centroids[1] << past_centroids[2] << std::endl; 
-
-  num_1 = 0, num_2 = 0, num_3 = 0;
 }

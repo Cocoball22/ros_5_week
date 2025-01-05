@@ -19,9 +19,8 @@ private:
     uchar b[3] = {};
     uchar g[3] = {};
     uchar r[3] = {};
-    int number = 0;
+    int number = 0, bun = 0;
     int num_1 = 0, num_2 = 0, num_3 = 0;
-    int F_num_1 = 0, F_num_2 = 0, F_num_3 = 0;
     bool falg_p = false;
     cv::Vec3b mean[22];
     cv::Vec3b current_centroids[3] = {};
@@ -40,9 +39,7 @@ public:
     void IamgeAverage(cv::Mat image);
     void Clustring(cv::Vec3b mean);
     double getDistance(const cv::Vec3b& p1, const cv::Vec3b& p2);
-    bool flag_p = false;
-    void NewCentroid();
-    void RunClustering();
+
 };
 
 #endif
