@@ -6,6 +6,7 @@
 #include <iostream>
 #include <random>
 #include <filesystem>
+#include "cv_pkg/AddTwoInts.h"
 
 class cluster
 {
@@ -13,7 +14,7 @@ private:
     std::string path = "/home/cona/catkin_ws/src/cv_pkg/src/fruit-png/";
     std::string test_path = "/home/cona/catkin_ws/src/cv_pkg/src/test/";
     // std::string input_image[20] = {"바나나1.png", "바나나2.png", "yellow.jpeg", "보라.png", "포도2.png"};
-    std::string input_image[3] = {};
+    std::string input_image[19] = {};
     std::string test_image[13] = {};
     int n = 0;
     cv::Mat image; // 이미지
@@ -24,17 +25,18 @@ private:
     int number = 0, bun = 0, input = 0;
     int num_1 = 0, num_2 = 0, num_3 = 0;
     bool flag_p = false;
-    cv::Vec3b mean[3];
+    
+    cv::Vec3b mean[19];
     cv::Vec3b current_centroids[3] = {};
     cv::Vec3b past_centroids[3] = {};
-    cv::Vec3b data_1[3] = {};
-    cv::Vec3b data_2[3] = {};
-    cv::Vec3b data_3[3] = {};
+    cv::Vec3b data_1[19] = {};
+    cv::Vec3b data_2[19] = {};
+    cv::Vec3b data_3[19] = {};
    
 public:
     cluster(/* args */);
     ~cluster();
-
+    
     void ImageRead();
     void FindCentroid();
     void FirstCentroids();
@@ -44,7 +46,6 @@ public:
     void TestIamgeAverage(cv::Mat image);
     void Test();
     void classification(cv::Vec3b mean);
-
 };
 
 #endif

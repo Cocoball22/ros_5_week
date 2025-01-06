@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
   OpenCV
+  message_generation
 )
 
 find_package(OpenCV REQUIRED)
@@ -59,12 +60,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #   Message2.msg
 # )
 
-## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
+# Generate services in the 'srv' folder
+add_service_files(
+  FILES
+  AddTwoInts.srv
+
+)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -74,10 +75,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
-# )
+generate_messages(
+  DEPENDENCIES
+  std_msgs  # Or other packages containing msgs
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -109,7 +110,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
- CATKIN_DEPENDS roscpp std_msgs
+ CATKIN_DEPENDS roscpp std_msgs message_runtime
 )
 
 ###########
@@ -123,12 +124,19 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(cluster src/MainCluster.cpp
-                       src/FuncCluster.cpp)
+add_executable(cluster src/MainCluster.cpp src/FuncCluster.cpp)
 
-target_link_libraries(cluster
-  ${catkin_LIBRARIES}
-)
+target_link_libraries(cluster ${catkin_LIBRARIES})
+
+add_dependencies(cluster cv_pkg_gencpp)
+
+add_executable(ClusterService src/ClusterService.cpp)
+
+target_link_libraries(ClusterService ${catkin_LIBRARIES})
+
+add_dependencies(ClusterService cv_pkg_gencpp)
+
+
 #############
 ## Install ##
 #############

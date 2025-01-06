@@ -3,6 +3,6 @@ prefix=/home/cona/catkin_ws/install
 Name: cv_pkg
 Description: Description of cv_pkg
 Version: 0.0.0
-Cflags: 
+Cflags: -I${prefix}/include
 Libs: -L${prefix}/lib 
-Requires: roscpp std_msgs
+Requires: roscpp std_msgs message_runtime

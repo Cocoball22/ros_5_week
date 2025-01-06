@@ -37,7 +37,7 @@ void cluster::ImageRead()
     // 2. 클러스터링 및 횟수 초기화
     number = 0;
     num_1 = 0; num_2 = 0; num_3 = 0;
-    for(; number < 3; number++)
+    for(; number < 19; number++)
     {
       image = cv::imread(input_image[number], cv::IMREAD_COLOR);
       IamgeAverage(image);
@@ -65,40 +65,40 @@ void cluster::ImageRead()
 // 초기 중심점 설정 랜덤 centroids
 void cluster::FirstCentroids()
 {
-  // 시드값을 얻기 위한 random_device 생성.
-  std::random_device rd;
+  // // 시드값을 얻기 위한 random_device 생성.
+  // std::random_device rd;
 
-  // random_device를 통해 난수 생성 엔진을 초기화 한다.
-  std::mt19937 gen(rd());
+  // // random_device를 통해 난수 생성 엔진을 초기화 한다.
+  // std::mt19937 gen(rd());
 
-  // std::mt19937 mt((unsigned int)time(NULL)); // 시드값 123
+  // // std::mt19937 mt((unsigned int)time(NULL)); // 시드값 123
   
-  // 1부터 255까지 균등하게 나타나는 난수열을 생성하기 위해 균등 분포 정의.
-  std::uniform_int_distribution<int> dist_b(0, 255);
-  std::uniform_int_distribution<int> dist_g(0, 255);
-  std::uniform_int_distribution<int> dist_r(0, 255);
-
-  for(int i = 0; i < k; i++)
-    { 
-      // int y = dist_y(gen);
-      b[i] = dist_b(gen);
-      g[i] = dist_g(gen);
-      r[i] = dist_r(gen);
-      current_centroids[i] = {b[i], g[i], r[i]};
-      past_centroids[i] = current_centroids[i]; // 이전 값 저장
-    }
-
-  // ---------------test--------------------------- 
-  // b[0] =  0, g[0] = 0, r[0] = 255;
-  // b[1] =  128, g[1] = 0, r[0] = 128;
-  // b[2] =  0, g[2] = 255, r[2] = 255;
+  // // 1부터 255까지 균등하게 나타나는 난수열을 생성하기 위해 균등 분포 정의.
+  // std::uniform_int_distribution<int> dist_b(0, 255);
+  // std::uniform_int_distribution<int> dist_g(0, 255);
+  // std::uniform_int_distribution<int> dist_r(0, 255);
 
   // for(int i = 0; i < k; i++)
   //   { 
+  //     // int y = dist_y(gen);
+  //     b[i] = dist_b(gen);
+  //     g[i] = dist_g(gen);
+  //     r[i] = dist_r(gen);
   //     current_centroids[i] = {b[i], g[i], r[i]};
   //     past_centroids[i] = current_centroids[i]; // 이전 값 저장
-  //     std::cout << "current[" << i << "]: " << current_centroids[i] << std::endl;
   //   }
+
+  // ---------------test--------------------------- 
+  b[0] =  0, g[0] = 0, r[0] = 255;
+  b[1] =  128, g[1] = 0, r[0] = 128;
+  b[2] =  0, g[2] = 255, r[2] = 255;
+
+  for(int i = 0; i < k; i++)
+    { 
+      current_centroids[i] = {b[i], g[i], r[i]};
+      past_centroids[i] = current_centroids[i]; // 이전 값 저장
+      std::cout << "current[" << i << "]: " << current_centroids[i] << std::endl;
+    }
 }
 
 // 이미지 평균
