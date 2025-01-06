@@ -33,10 +33,11 @@ void cluster::ImageRead()
       past_centroids[i] = current_centroids[i];
     }
 
+
     // 2. 클러스터링 및 횟수 초기화
     number = 0;
     num_1 = 0; num_2 = 0; num_3 = 0;
-    for(; number < 33; number++)
+    for(; number < 3; number++)
     {
       image = cv::imread(input_image[number], cv::IMREAD_COLOR);
       IamgeAverage(image);
@@ -47,6 +48,8 @@ void cluster::ImageRead()
 
     bun++;
     std::cout << "bunsu: " << bun << std::endl;
+    
+    
 
     // 4. 이전 중심점이랑 현재 중심점 비교
     if(past_centroids[0] == current_centroids[0] && past_centroids[1] == current_centroids[1] && past_centroids[2] == current_centroids[2])
@@ -84,6 +87,18 @@ void cluster::FirstCentroids()
       current_centroids[i] = {b[i], g[i], r[i]};
       past_centroids[i] = current_centroids[i]; // 이전 값 저장
     }
+
+  // ---------------test--------------------------- 
+  // b[0] =  0, g[0] = 0, r[0] = 255;
+  // b[1] =  128, g[1] = 0, r[0] = 128;
+  // b[2] =  0, g[2] = 255, r[2] = 255;
+
+  // for(int i = 0; i < k; i++)
+  //   { 
+  //     current_centroids[i] = {b[i], g[i], r[i]};
+  //     past_centroids[i] = current_centroids[i]; // 이전 값 저장
+  //     std::cout << "current[" << i << "]: " << current_centroids[i] << std::endl;
+  //   }
 }
 
 // 이미지 평균
@@ -103,10 +118,16 @@ void cluster::IamgeAverage(cv::Mat image)
       uchar g = pointer_row[col * 3 + 1];
       uchar r = pointer_row[col * 3 + 2];
 
+      // if((b > 102 && b <160) && (g > 102 && g <160 )&& (r > 102 && r <160))
+      // {
+      //   continue;
+      // }
+
       if(b > 240 && g > 240 && r > 240)
       {
         continue;
       }
+
       sum_b = sum_b + b;
       sum_g = sum_g + g;
       sum_r = sum_r + r;
@@ -191,6 +212,7 @@ void cluster::FindCentroid()
   std::cout << "sum_data_2: " << sum_data_2 << std::endl;
   std::cout << "sum_data_3: " << sum_data_3 << std::endl;
 
+  // num_1은 카운트 수
   if(num_1 > 0)
   {
     avg_data_1 = sum_data_1 / num_1;
@@ -209,7 +231,173 @@ void cluster::FindCentroid()
     current_centroids[2] = (cv::Vec3b)avg_data_3;
     std::cout << "avg_data_3: " << avg_data_3 << std::endl;
   }
-  
+  printf("22222\n");
   std::cout << "now: " << current_centroids[0] << current_centroids[1] << current_centroids[2] << std::endl;
   std::cout << "past: " << past_centroids[0] << past_centroids[1] << past_centroids[2] << std::endl; 
+}
+
+void cluster::Test()
+{
+    int n = 0;
+    std::filesystem::directory_iterator itr(test_path);
+
+    while (itr != std::filesystem::end(itr)) 
+    {
+      const std::filesystem::directory_entry& entry = *itr;
+      std::cout << entry.path() << std::endl;
+      test_image[n] = entry.path();
+      n++; 
+      itr++;
+    }
+
+    printf("테스트 이미지의 번호를 입력: ");
+    scanf("%d", &input);
+    // printf("%d \n",input);
+
+    // 2. 클러스터링 및 횟수 초기화
+
+    image = cv::imread(test_image[input], cv::IMREAD_COLOR);
+    TestIamgeAverage(image);
+   
+}
+
+// 이미지 평균
+void cluster::TestIamgeAverage(cv::Mat image)
+{ 
+  unsigned int sum_b = 0, sum_g = 0, sum_r = 0;
+  uchar avg_b, avg_g, avg_r;
+  int count = 0;
+
+  for(int row = 0; row < image.rows; row++)
+  {
+    uchar* pointer_row = image.ptr<uchar>(row); 
+    for(int col =0; col < image.cols; col++)
+    {
+
+      uchar b = pointer_row[col * 3 + 0];
+      uchar g = pointer_row[col * 3 + 1];
+      uchar r = pointer_row[col * 3 + 2];
+
+      // if((b > 102 && b <160) && (g > 102 && g <160 )&& (r > 102 && r <160))
+      // {
+      //   continue;
+      // }
+
+      if(b > 240 && g > 240 && r > 240)
+      {
+        continue;
+      }
+
+      sum_b = sum_b + b;
+      sum_g = sum_g + g;
+      sum_r = sum_r + r;
+      count++;
+    }
+  }
+  avg_b = sum_b/count;
+  avg_g = sum_g/count;
+  avg_r = sum_r/count;
+
+  // printf("%d,%d,%d\n",sum_b, sum_g, sum_r);
+  
+  mean[input] = {avg_b, avg_g, avg_r};
+  std::cout << "image average: " <<  mean[input] << std::endl;
+  classification(mean[input]);
+}
+
+// 분류
+void cluster::classification(cv::Vec3b mean) 
+{
+  printf("      \n");
+  std::cout << "classification" << std::endl;
+
+  double apple_distance[3] = {};
+  double banana_distance[3] = {};
+  double grape_distance[3] = {};
+  double distance[3] = {};
+
+  double label_distance[3] = {};
+
+  cv::Vec3b apple(0,0,255); 
+  cv::Vec3b banana(0,255,255); 
+  cv::Vec3b grape(128,0,128); 
+  // printf("%d %d %d\n", apple[0], apple[1], apple[2]);
+
+  for(int k = 0; k < 3; k++)
+  {
+       apple_distance[k] = getDistance(apple, current_centroids[k]);
+
+  }
+  for(int k = 0; k < 3; k++)
+  {
+       banana_distance[k] = getDistance(banana, current_centroids[k]);
+  }
+  for(int k = 0; k < 3; k++)
+  {
+       grape_distance[k] = getDistance(grape, current_centroids[k]);
+  }
+
+  std::cout <<"apple_distance: " << apple_distance[0] << " " << apple_distance[1] << " " << apple_distance[2] << std::endl;
+  std::cout <<"banana_distance: " << banana_distance[0] << " " << banana_distance[1] << " " << banana_distance[2] << std::endl;
+  std::cout <<"grape_distance: " << grape_distance[0] << " " << grape_distance[1] << " " << grape_distance[2] << std::endl;
+
+  label_distance[0] = apple_distance[0] < apple_distance[1] ? (apple_distance[0] < apple_distance[2] ? apple_distance[0] : apple_distance[2]) : (apple_distance[1] < apple_distance[2] ? apple_distance[1] : apple_distance[2]);
+  label_distance[1] = banana_distance[0] < banana_distance[1] ? (banana_distance[0] < banana_distance[2] ? banana_distance[0] : banana_distance[2]) : (banana_distance[1] < banana_distance[2] ? banana_distance[1] : banana_distance[2]);
+  label_distance[2] = grape_distance[0] < grape_distance[1] ? (grape_distance[0] < grape_distance[2] ? grape_distance[0] : grape_distance[2]) : (grape_distance[1] < grape_distance[2] ? grape_distance[1] : grape_distance[2]);
+
+
+  std::cout <<"label_distance: " << label_distance[0] << " " << label_distance[1] << " " << label_distance[2] << std::endl;
+
+  int apple_n = 0, banana_n = 0, grape_n = 0;
+
+  for(int k = 0; k < 3; k++)
+  {
+    if(apple_distance[k] == label_distance[0])
+    {
+      apple_n = k;
+    }
+
+    else if(banana_distance[k] == label_distance[1])
+    {
+      banana_n = k;
+    }
+
+    else if(grape_distance[k] == label_distance[2])
+    {
+      grape_n = k;
+    }
+
+  }
+
+  printf("%d %d %d \n", apple_n, banana_n, grape_n);
+
+  std::cout << "apple_centroid :" << apple_distance[apple_n] << " " << "banana_distance :" << banana_distance[banana_n] << " " << "grape_distance :" << grape_distance[grape_n] << " " << std::endl;
+
+  // 선택한 이미지 값과 중심점 값의 차이 중에 가장 작은 값이 과일을 분류 해야하니까
+  for(int k = 0; k < 3; k++)
+  {
+    std::cout << "current_centroids: " << current_centroids[k] << std::endl;
+    distance[k] = getDistance(mean, current_centroids[k]);
+  }
+
+  std::cout <<"평균 이미지 distance: " << distance[0] << " " << distance[1] << " " << distance[2] << std::endl;
+
+
+  // double min =  distance[0] < distance[1] ? (distance[0] < distance[2] ? distance[0] : distance[2]) : (distance[1] < distance[2] ? distance[1] : distance[2]);
+ 
+  // printf("min: %f \n", min);
+
+  // if(distance[0] == min)
+  // {
+    
+  // }
+  // if(distance[1] == min)
+  // {
+    
+  // }
+  // if(distance[2] == min)
+  // {
+   
+  // }
+
 }

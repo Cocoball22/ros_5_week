@@ -1,2 +1,2 @@
 cv_pkg
--DCATKIN_DEVEL_PREFIX=/home/hyun/ros_5_week/devel -DCMAKE_INSTALL_PREFIX=/home/hyun/ros_5_week/install -G Unix Makefiles
+-DCATKIN_DEVEL_PREFIX=/home/cona/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/cona/catkin_ws/install -G Unix Makefiles

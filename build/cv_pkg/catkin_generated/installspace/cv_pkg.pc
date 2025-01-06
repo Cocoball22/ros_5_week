@@ -1,4 +1,4 @@
-prefix=/home/hyun/ros_5_week/install
+prefix=/home/cona/catkin_ws/install
 
 Name: cv_pkg
 Description: Description of cv_pkg
