@@ -12,8 +12,8 @@ class cluster
 private:
     std::string path = "/home/hyun/ros_5_week/src/cv_pkg/src/fruit-png/";
     // std::string input_image[20] = {"바나나1.png", "바나나2.png", "yellow.jpeg", "보라.png", "포도2.png"};
-    std::string input_image[22] = {};
-
+    std::string input_image[33] = {};
+    int n = 0;
     cv::Mat image; // 이미지
     int k = 3;  // 클러스터 수
     uchar b[3] = {};
@@ -22,12 +22,12 @@ private:
     int number = 0, bun = 0;
     int num_1 = 0, num_2 = 0, num_3 = 0;
     bool flag_p = false;
-    cv::Vec3b mean[22];
+    cv::Vec3b mean[33];
     cv::Vec3b current_centroids[3] = {};
     cv::Vec3b past_centroids[3] = {};
-    cv::Vec3b data_1[22] = {};
-    cv::Vec3b data_2[22] = {};
-    cv::Vec3b data_3[22] = {};
+    cv::Vec3b data_1[33] = {};
+    cv::Vec3b data_2[33] = {};
+    cv::Vec3b data_3[33] = {};
    
 public:
     cluster(/* args */);

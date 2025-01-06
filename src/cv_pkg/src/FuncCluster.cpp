@@ -11,8 +11,7 @@ cluster::~cluster()
 void cluster::ImageRead()
 {
   printf("start\n");
-
-
+  
   int n = 0;
   std::filesystem::directory_iterator itr(path);
 
@@ -37,7 +36,7 @@ void cluster::ImageRead()
     // 2. 클러스터링 및 횟수 초기화
     number = 0;
     num_1 = 0; num_2 = 0; num_3 = 0;
-    for(; number < 22; number++)
+    for(; number < 33; number++)
     {
       image = cv::imread(input_image[number], cv::IMREAD_COLOR);
       IamgeAverage(image);
