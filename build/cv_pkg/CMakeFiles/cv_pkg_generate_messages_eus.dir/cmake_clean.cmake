@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/cona/catkin_ws/devel/share/roseus/ros/cv_pkg/manifest.l"
-  "/home/cona/catkin_ws/devel/share/roseus/ros/cv_pkg/srv/AddTwoInts.l"
+  "/home/hyun/ros_5_week/devel/share/roseus/ros/cv_pkg/manifest.l"
+  "/home/hyun/ros_5_week/devel/share/roseus/ros/cv_pkg/srv/ImageClassify.l"
   "CMakeFiles/cv_pkg_generate_messages_eus"
 )
 

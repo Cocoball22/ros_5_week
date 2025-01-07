@@ -17,9 +17,9 @@ add_custom_target(cv_pkg_generate_messages ALL)
 
 
 
-get_filename_component(_filename "/home/cona/catkin_ws/src/cv_pkg/srv/AddTwoInts.srv" NAME_WE)
+get_filename_component(_filename "/home/hyun/ros_5_week/src/cv_pkg/srv/ImageClassify.srv" NAME_WE)
 add_custom_target(_cv_pkg_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "cv_pkg" "/home/cona/catkin_ws/src/cv_pkg/srv/AddTwoInts.srv" ""
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "cv_pkg" "/home/hyun/ros_5_week/src/cv_pkg/srv/ImageClassify.srv" ""
 )
 
 #
@@ -31,7 +31,7 @@ add_custom_target(_cv_pkg_generate_messages_check_deps_${_filename}
 
 ### Generating Services
 _generate_srv_cpp(cv_pkg
-  "/home/cona/catkin_ws/src/cv_pkg/srv/AddTwoInts.srv"
+  "/home/hyun/ros_5_week/src/cv_pkg/srv/ImageClassify.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/cv_pkg
@@ -49,7 +49,7 @@ add_custom_target(cv_pkg_generate_messages_cpp
 add_dependencies(cv_pkg_generate_messages cv_pkg_generate_messages_cpp)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/cona/catkin_ws/src/cv_pkg/srv/AddTwoInts.srv" NAME_WE)
+get_filename_component(_filename "/home/hyun/ros_5_week/src/cv_pkg/srv/ImageClassify.srv" NAME_WE)
 add_dependencies(cv_pkg_generate_messages_cpp _cv_pkg_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -64,7 +64,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS cv_pkg_generate_messages_cpp)
 
 ### Generating Services
 _generate_srv_eus(cv_pkg
-  "/home/cona/catkin_ws/src/cv_pkg/srv/AddTwoInts.srv"
+  "/home/hyun/ros_5_week/src/cv_pkg/srv/ImageClassify.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/cv_pkg
@@ -82,7 +82,7 @@ add_custom_target(cv_pkg_generate_messages_eus
 add_dependencies(cv_pkg_generate_messages cv_pkg_generate_messages_eus)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/cona/catkin_ws/src/cv_pkg/srv/AddTwoInts.srv" NAME_WE)
+get_filename_component(_filename "/home/hyun/ros_5_week/src/cv_pkg/srv/ImageClassify.srv" NAME_WE)
 add_dependencies(cv_pkg_generate_messages_eus _cv_pkg_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -97,7 +97,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS cv_pkg_generate_messages_eus)
 
 ### Generating Services
 _generate_srv_lisp(cv_pkg
-  "/home/cona/catkin_ws/src/cv_pkg/srv/AddTwoInts.srv"
+  "/home/hyun/ros_5_week/src/cv_pkg/srv/ImageClassify.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/cv_pkg
@@ -115,7 +115,7 @@ add_custom_target(cv_pkg_generate_messages_lisp
 add_dependencies(cv_pkg_generate_messages cv_pkg_generate_messages_lisp)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/cona/catkin_ws/src/cv_pkg/srv/AddTwoInts.srv" NAME_WE)
+get_filename_component(_filename "/home/hyun/ros_5_week/src/cv_pkg/srv/ImageClassify.srv" NAME_WE)
 add_dependencies(cv_pkg_generate_messages_lisp _cv_pkg_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -130,7 +130,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS cv_pkg_generate_messages_lisp)
 
 ### Generating Services
 _generate_srv_nodejs(cv_pkg
-  "/home/cona/catkin_ws/src/cv_pkg/srv/AddTwoInts.srv"
+  "/home/hyun/ros_5_week/src/cv_pkg/srv/ImageClassify.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/cv_pkg
@@ -148,7 +148,7 @@ add_custom_target(cv_pkg_generate_messages_nodejs
 add_dependencies(cv_pkg_generate_messages cv_pkg_generate_messages_nodejs)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/cona/catkin_ws/src/cv_pkg/srv/AddTwoInts.srv" NAME_WE)
+get_filename_component(_filename "/home/hyun/ros_5_week/src/cv_pkg/srv/ImageClassify.srv" NAME_WE)
 add_dependencies(cv_pkg_generate_messages_nodejs _cv_pkg_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -163,7 +163,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS cv_pkg_generate_messages_nodejs)
 
 ### Generating Services
 _generate_srv_py(cv_pkg
-  "/home/cona/catkin_ws/src/cv_pkg/srv/AddTwoInts.srv"
+  "/home/hyun/ros_5_week/src/cv_pkg/srv/ImageClassify.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/cv_pkg
@@ -181,7 +181,7 @@ add_custom_target(cv_pkg_generate_messages_py
 add_dependencies(cv_pkg_generate_messages cv_pkg_generate_messages_py)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/cona/catkin_ws/src/cv_pkg/srv/AddTwoInts.srv" NAME_WE)
+get_filename_component(_filename "/home/hyun/ros_5_week/src/cv_pkg/srv/ImageClassify.srv" NAME_WE)
 add_dependencies(cv_pkg_generate_messages_py _cv_pkg_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility

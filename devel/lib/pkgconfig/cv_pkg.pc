@@ -1,8 +1,8 @@
-prefix=/home/cona/catkin_ws/devel
+prefix=/home/hyun/ros_5_week/devel
 
 Name: cv_pkg
 Description: Description of cv_pkg
 Version: 0.0.0
-Cflags: -I/home/cona/catkin_ws/devel/include
+Cflags: -I/home/hyun/ros_5_week/devel/include
 Libs: -L${prefix}/lib 
 Requires: roscpp std_msgs message_runtime

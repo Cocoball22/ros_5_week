@@ -7,16 +7,11 @@
 ;//! \htmlinclude AddTwoInts-request.msg.html
 
 (cl:defclass <AddTwoInts-request> (roslisp-msg-protocol:ros-message)
-  ((a
-    :reader a
-    :initarg :a
-    :type cl:integer
-    :initform 0)
-   (b
-    :reader b
-    :initarg :b
-    :type cl:integer
-    :initform 0))
+  ((image_path
+    :reader image_path
+    :initarg :image_path
+    :type cl:string
+    :initform ""))
 )
 
 (cl:defclass AddTwoInts-request (<AddTwoInts-request>)
@@ -27,44 +22,29 @@
   (cl:unless (cl:typep m 'AddTwoInts-request)
     (roslisp-msg-protocol:msg-deprecation-warning "using old message class name cv_pkg-srv:<AddTwoInts-request> is deprecated: use cv_pkg-srv:AddTwoInts-request instead.")))
 
-(cl:ensure-generic-function 'a-val :lambda-list '(m))
-(cl:defmethod a-val ((m <AddTwoInts-request>))
-  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader cv_pkg-srv:a-val is deprecated.  Use cv_pkg-srv:a instead.")
-  (a m))
-
-(cl:ensure-generic-function 'b-val :lambda-list '(m))
-(cl:defmethod b-val ((m <AddTwoInts-request>))
-  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader cv_pkg-srv:b-val is deprecated.  Use cv_pkg-srv:b instead.")
-  (b m))
+(cl:ensure-generic-function 'image_path-val :lambda-list '(m))
+(cl:defmethod image_path-val ((m <AddTwoInts-request>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader cv_pkg-srv:image_path-val is deprecated.  Use cv_pkg-srv:image_path instead.")
+  (image_path m))
 (cl:defmethod roslisp-msg-protocol:serialize ((msg <AddTwoInts-request>) ostream)
   "Serializes a message object of type '<AddTwoInts-request>"
-  (cl:let* ((signed (cl:slot-value msg 'a)) (unsigned (cl:if (cl:< signed 0) (cl:+ signed 4294967296) signed)))
-    (cl:write-byte (cl:ldb (cl:byte 8 0) unsigned) ostream)
-    (cl:write-byte (cl:ldb (cl:byte 8 8) unsigned) ostream)
-    (cl:write-byte (cl:ldb (cl:byte 8 16) unsigned) ostream)
-    (cl:write-byte (cl:ldb (cl:byte 8 24) unsigned) ostream)
-    )
-  (cl:let* ((signed (cl:slot-value msg 'b)) (unsigned (cl:if (cl:< signed 0) (cl:+ signed 4294967296) signed)))
-    (cl:write-byte (cl:ldb (cl:byte 8 0) unsigned) ostream)
-    (cl:write-byte (cl:ldb (cl:byte 8 8) unsigned) ostream)
-    (cl:write-byte (cl:ldb (cl:byte 8 16) unsigned) ostream)
-    (cl:write-byte (cl:ldb (cl:byte 8 24) unsigned) ostream)
-    )
+  (cl:let ((__ros_str_len (cl:length (cl:slot-value msg 'image_path))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) __ros_str_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) __ros_str_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) __ros_str_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) __ros_str_len) ostream))
+  (cl:map cl:nil #'(cl:lambda (c) (cl:write-byte (cl:char-code c) ostream)) (cl:slot-value msg 'image_path))
 )
 (cl:defmethod roslisp-msg-protocol:deserialize ((msg <AddTwoInts-request>) istream)
   "Deserializes a message object of type '<AddTwoInts-request>"
-    (cl:let ((unsigned 0))
-      (cl:setf (cl:ldb (cl:byte 8 0) unsigned) (cl:read-byte istream))
-      (cl:setf (cl:ldb (cl:byte 8 8) unsigned) (cl:read-byte istream))
-      (cl:setf (cl:ldb (cl:byte 8 16) unsigned) (cl:read-byte istream))
-      (cl:setf (cl:ldb (cl:byte 8 24) unsigned) (cl:read-byte istream))
-      (cl:setf (cl:slot-value msg 'a) (cl:if (cl:< unsigned 2147483648) unsigned (cl:- unsigned 4294967296))))
-    (cl:let ((unsigned 0))
-      (cl:setf (cl:ldb (cl:byte 8 0) unsigned) (cl:read-byte istream))
-      (cl:setf (cl:ldb (cl:byte 8 8) unsigned) (cl:read-byte istream))
-      (cl:setf (cl:ldb (cl:byte 8 16) unsigned) (cl:read-byte istream))
-      (cl:setf (cl:ldb (cl:byte 8 24) unsigned) (cl:read-byte istream))
-      (cl:setf (cl:slot-value msg 'b) (cl:if (cl:< unsigned 2147483648) unsigned (cl:- unsigned 4294967296))))
+    (cl:let ((__ros_str_len 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:slot-value msg 'image_path) (cl:make-string __ros_str_len))
+      (cl:dotimes (__ros_str_idx __ros_str_len msg)
+        (cl:setf (cl:char (cl:slot-value msg 'image_path) __ros_str_idx) (cl:code-char (cl:read-byte istream)))))
   msg
 )
 (cl:defmethod roslisp-msg-protocol:ros-datatype ((msg (cl:eql '<AddTwoInts-request>)))
@@ -75,35 +55,33 @@
   "cv_pkg/AddTwoIntsRequest")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<AddTwoInts-request>)))
   "Returns md5sum for a message object of type '<AddTwoInts-request>"
-  "f0b6d69ea10b0cf210cb349d58d59e8f")
+  "4a399bc94c653d283002e008e813f40e")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'AddTwoInts-request)))
   "Returns md5sum for a message object of type 'AddTwoInts-request"
-  "f0b6d69ea10b0cf210cb349d58d59e8f")
+  "4a399bc94c653d283002e008e813f40e")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<AddTwoInts-request>)))
   "Returns full string definition for message of type '<AddTwoInts-request>"
-  (cl:format cl:nil "int32 a~%int32 b~%~%~%"))
+  (cl:format cl:nil "string image_path~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'AddTwoInts-request)))
   "Returns full string definition for message of type 'AddTwoInts-request"
-  (cl:format cl:nil "int32 a~%int32 b~%~%~%"))
+  (cl:format cl:nil "string image_path~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <AddTwoInts-request>))
   (cl:+ 0
-     4
-     4
+     4 (cl:length (cl:slot-value msg 'image_path))
 ))
 (cl:defmethod roslisp-msg-protocol:ros-message-to-list ((msg <AddTwoInts-request>))
   "Converts a ROS message object to a list"
   (cl:list 'AddTwoInts-request
-    (cl:cons ':a (a msg))
-    (cl:cons ':b (b msg))
+    (cl:cons ':image_path (image_path msg))
 ))
 ;//! \htmlinclude AddTwoInts-response.msg.html
 
 (cl:defclass <AddTwoInts-response> (roslisp-msg-protocol:ros-message)
-  ((sum
-    :reader sum
-    :initarg :sum
-    :type cl:integer
-    :initform 0))
+  ((fruit_type
+    :reader fruit_type
+    :initarg :fruit_type
+    :type cl:string
+    :initform ""))
 )
 
 (cl:defclass AddTwoInts-response (<AddTwoInts-response>)
@@ -114,27 +92,29 @@
   (cl:unless (cl:typep m 'AddTwoInts-response)
     (roslisp-msg-protocol:msg-deprecation-warning "using old message class name cv_pkg-srv:<AddTwoInts-response> is deprecated: use cv_pkg-srv:AddTwoInts-response instead.")))
 
-(cl:ensure-generic-function 'sum-val :lambda-list '(m))
-(cl:defmethod sum-val ((m <AddTwoInts-response>))
-  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader cv_pkg-srv:sum-val is deprecated.  Use cv_pkg-srv:sum instead.")
-  (sum m))
+(cl:ensure-generic-function 'fruit_type-val :lambda-list '(m))
+(cl:defmethod fruit_type-val ((m <AddTwoInts-response>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader cv_pkg-srv:fruit_type-val is deprecated.  Use cv_pkg-srv:fruit_type instead.")
+  (fruit_type m))
 (cl:defmethod roslisp-msg-protocol:serialize ((msg <AddTwoInts-response>) ostream)
   "Serializes a message object of type '<AddTwoInts-response>"
-  (cl:let* ((signed (cl:slot-value msg 'sum)) (unsigned (cl:if (cl:< signed 0) (cl:+ signed 4294967296) signed)))
-    (cl:write-byte (cl:ldb (cl:byte 8 0) unsigned) ostream)
-    (cl:write-byte (cl:ldb (cl:byte 8 8) unsigned) ostream)
-    (cl:write-byte (cl:ldb (cl:byte 8 16) unsigned) ostream)
-    (cl:write-byte (cl:ldb (cl:byte 8 24) unsigned) ostream)
-    )
+  (cl:let ((__ros_str_len (cl:length (cl:slot-value msg 'fruit_type))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) __ros_str_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) __ros_str_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) __ros_str_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) __ros_str_len) ostream))
+  (cl:map cl:nil #'(cl:lambda (c) (cl:write-byte (cl:char-code c) ostream)) (cl:slot-value msg 'fruit_type))
 )
 (cl:defmethod roslisp-msg-protocol:deserialize ((msg <AddTwoInts-response>) istream)
   "Deserializes a message object of type '<AddTwoInts-response>"
-    (cl:let ((unsigned 0))
-      (cl:setf (cl:ldb (cl:byte 8 0) unsigned) (cl:read-byte istream))
-      (cl:setf (cl:ldb (cl:byte 8 8) unsigned) (cl:read-byte istream))
-      (cl:setf (cl:ldb (cl:byte 8 16) unsigned) (cl:read-byte istream))
-      (cl:setf (cl:ldb (cl:byte 8 24) unsigned) (cl:read-byte istream))
-      (cl:setf (cl:slot-value msg 'sum) (cl:if (cl:< unsigned 2147483648) unsigned (cl:- unsigned 4294967296))))
+    (cl:let ((__ros_str_len 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:slot-value msg 'fruit_type) (cl:make-string __ros_str_len))
+      (cl:dotimes (__ros_str_idx __ros_str_len msg)
+        (cl:setf (cl:char (cl:slot-value msg 'fruit_type) __ros_str_idx) (cl:code-char (cl:read-byte istream)))))
   msg
 )
 (cl:defmethod roslisp-msg-protocol:ros-datatype ((msg (cl:eql '<AddTwoInts-response>)))
@@ -145,24 +125,24 @@
   "cv_pkg/AddTwoIntsResponse")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<AddTwoInts-response>)))
   "Returns md5sum for a message object of type '<AddTwoInts-response>"
-  "f0b6d69ea10b0cf210cb349d58d59e8f")
+  "4a399bc94c653d283002e008e813f40e")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'AddTwoInts-response)))
   "Returns md5sum for a message object of type 'AddTwoInts-response"
-  "f0b6d69ea10b0cf210cb349d58d59e8f")
+  "4a399bc94c653d283002e008e813f40e")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<AddTwoInts-response>)))
   "Returns full string definition for message of type '<AddTwoInts-response>"
-  (cl:format cl:nil "int32 sum~%~%~%~%"))
+  (cl:format cl:nil "string fruit_type~%~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'AddTwoInts-response)))
   "Returns full string definition for message of type 'AddTwoInts-response"
-  (cl:format cl:nil "int32 sum~%~%~%~%"))
+  (cl:format cl:nil "string fruit_type~%~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <AddTwoInts-response>))
   (cl:+ 0
-     4
+     4 (cl:length (cl:slot-value msg 'fruit_type))
 ))
 (cl:defmethod roslisp-msg-protocol:ros-message-to-list ((msg <AddTwoInts-response>))
   "Converts a ROS message object to a list"
   (cl:list 'AddTwoInts-response
-    (cl:cons ':sum (sum msg))
+    (cl:cons ':fruit_type (fruit_type msg))
 ))
 (cl:defmethod roslisp-msg-protocol:service-request-type ((msg (cl:eql 'AddTwoInts)))
   'AddTwoInts-request)

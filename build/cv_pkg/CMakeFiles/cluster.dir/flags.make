@@ -6,5 +6,5 @@ CXX_FLAGS =   -std=gnu++17
 
 CXX_DEFINES = -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\"cv_pkg\"
 
-CXX_INCLUDES = -I/home/cona/catkin_ws/devel/include -I/home/cona/catkin_ws/src/cv_pkg/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -isystem /usr/include/opencv4 
+CXX_INCLUDES = -I/home/hyun/ros_5_week/devel/include -I/home/hyun/ros_5_week/src/cv_pkg/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -isystem /usr/include/opencv4 
 

@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "/home/cona/catkin_ws/devel/include/cv_pkg/AddTwoInts.h"
+  "/home/hyun/ros_5_week/devel/include/cv_pkg/ImageClassify.h"
   "CMakeFiles/cv_pkg_generate_messages_cpp"
 )
 

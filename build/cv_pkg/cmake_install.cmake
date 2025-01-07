@@ -1,8 +1,8 @@
-# Install script for directory: /home/cona/catkin_ws/src/cv_pkg
+# Install script for directory: /home/hyun/ros_5_week/src/cv_pkg
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/cona/catkin_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/hyun/ros_5_week/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,53 +38,53 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/cv_pkg/srv" TYPE FILE FILES "/home/cona/catkin_ws/src/cv_pkg/srv/AddTwoInts.srv")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/cv_pkg/srv" TYPE FILE FILES "/home/hyun/ros_5_week/src/cv_pkg/srv/ImageClassify.srv")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/cv_pkg/cmake" TYPE FILE FILES "/home/cona/catkin_ws/build/cv_pkg/catkin_generated/installspace/cv_pkg-msg-paths.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/cv_pkg/cmake" TYPE FILE FILES "/home/hyun/ros_5_week/build/cv_pkg/catkin_generated/installspace/cv_pkg-msg-paths.cmake")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/cona/catkin_ws/devel/include/cv_pkg")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/hyun/ros_5_week/devel/include/cv_pkg")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/roseus/ros" TYPE DIRECTORY FILES "/home/cona/catkin_ws/devel/share/roseus/ros/cv_pkg")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/roseus/ros" TYPE DIRECTORY FILES "/home/hyun/ros_5_week/devel/share/roseus/ros/cv_pkg")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/common-lisp/ros" TYPE DIRECTORY FILES "/home/cona/catkin_ws/devel/share/common-lisp/ros/cv_pkg")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/common-lisp/ros" TYPE DIRECTORY FILES "/home/hyun/ros_5_week/devel/share/common-lisp/ros/cv_pkg")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gennodejs/ros" TYPE DIRECTORY FILES "/home/cona/catkin_ws/devel/share/gennodejs/ros/cv_pkg")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gennodejs/ros" TYPE DIRECTORY FILES "/home/hyun/ros_5_week/devel/share/gennodejs/ros/cv_pkg")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  execute_process(COMMAND "/usr/bin/python3" -m compileall "/home/cona/catkin_ws/devel/lib/python3/dist-packages/cv_pkg")
+  execute_process(COMMAND "/usr/bin/python3" -m compileall "/home/hyun/ros_5_week/devel/lib/python3/dist-packages/cv_pkg")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python3/dist-packages" TYPE DIRECTORY FILES "/home/cona/catkin_ws/devel/lib/python3/dist-packages/cv_pkg")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python3/dist-packages" TYPE DIRECTORY FILES "/home/hyun/ros_5_week/devel/lib/python3/dist-packages/cv_pkg")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/cona/catkin_ws/build/cv_pkg/catkin_generated/installspace/cv_pkg.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/hyun/ros_5_week/build/cv_pkg/catkin_generated/installspace/cv_pkg.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/cv_pkg/cmake" TYPE FILE FILES "/home/cona/catkin_ws/build/cv_pkg/catkin_generated/installspace/cv_pkg-msg-extras.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/cv_pkg/cmake" TYPE FILE FILES "/home/hyun/ros_5_week/build/cv_pkg/catkin_generated/installspace/cv_pkg-msg-extras.cmake")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/cv_pkg/cmake" TYPE FILE FILES
-    "/home/cona/catkin_ws/build/cv_pkg/catkin_generated/installspace/cv_pkgConfig.cmake"
-    "/home/cona/catkin_ws/build/cv_pkg/catkin_generated/installspace/cv_pkgConfig-version.cmake"
+    "/home/hyun/ros_5_week/build/cv_pkg/catkin_generated/installspace/cv_pkgConfig.cmake"
+    "/home/hyun/ros_5_week/build/cv_pkg/catkin_generated/installspace/cv_pkgConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/cv_pkg" TYPE FILE FILES "/home/cona/catkin_ws/src/cv_pkg/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/cv_pkg" TYPE FILE FILES "/home/hyun/ros_5_week/src/cv_pkg/package.xml")
 endif()
 

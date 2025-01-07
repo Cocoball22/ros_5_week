@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/cona/catkin_ws/src
+CMAKE_SOURCE_DIR = /home/hyun/ros_5_week/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/cona/catkin_ws/build
+CMAKE_BINARY_DIR = /home/hyun/ros_5_week/build
 
 # Utility rule file for cv_pkg_generate_messages.
 
@@ -63,10 +63,10 @@ cv_pkg/CMakeFiles/cv_pkg_generate_messages.dir/build: cv_pkg_generate_messages
 .PHONY : cv_pkg/CMakeFiles/cv_pkg_generate_messages.dir/build
 
 cv_pkg/CMakeFiles/cv_pkg_generate_messages.dir/clean:
-	cd /home/cona/catkin_ws/build/cv_pkg && $(CMAKE_COMMAND) -P CMakeFiles/cv_pkg_generate_messages.dir/cmake_clean.cmake
+	cd /home/hyun/ros_5_week/build/cv_pkg && $(CMAKE_COMMAND) -P CMakeFiles/cv_pkg_generate_messages.dir/cmake_clean.cmake
 .PHONY : cv_pkg/CMakeFiles/cv_pkg_generate_messages.dir/clean
 
 cv_pkg/CMakeFiles/cv_pkg_generate_messages.dir/depend:
-	cd /home/cona/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/cona/catkin_ws/src /home/cona/catkin_ws/src/cv_pkg /home/cona/catkin_ws/build /home/cona/catkin_ws/build/cv_pkg /home/cona/catkin_ws/build/cv_pkg/CMakeFiles/cv_pkg_generate_messages.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/hyun/ros_5_week/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/hyun/ros_5_week/src /home/hyun/ros_5_week/src/cv_pkg /home/hyun/ros_5_week/build /home/hyun/ros_5_week/build/cv_pkg /home/hyun/ros_5_week/build/cv_pkg/CMakeFiles/cv_pkg_generate_messages.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : cv_pkg/CMakeFiles/cv_pkg_generate_messages.dir/depend
 

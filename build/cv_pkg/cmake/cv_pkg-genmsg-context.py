@@ -1,7 +1,7 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
 messages_str = ""
-services_str = "/home/cona/catkin_ws/src/cv_pkg/srv/AddTwoInts.srv"
+services_str = "/home/hyun/ros_5_week/src/cv_pkg/srv/ImageClassify.srv"
 pkg_name = "cv_pkg"
 dependencies_str = "std_msgs"
 langs = "gencpp;geneus;genlisp;gennodejs;genpy"

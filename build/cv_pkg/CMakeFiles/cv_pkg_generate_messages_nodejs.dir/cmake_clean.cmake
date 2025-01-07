@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "/home/cona/catkin_ws/devel/share/gennodejs/ros/cv_pkg/srv/AddTwoInts.js"
+  "/home/hyun/ros_5_week/devel/share/gennodejs/ros/cv_pkg/srv/ImageClassify.js"
   "CMakeFiles/cv_pkg_generate_messages_nodejs"
 )
 

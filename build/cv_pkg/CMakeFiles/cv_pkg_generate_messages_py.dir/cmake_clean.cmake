@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/cona/catkin_ws/devel/lib/python3/dist-packages/cv_pkg/srv/_AddTwoInts.py"
-  "/home/cona/catkin_ws/devel/lib/python3/dist-packages/cv_pkg/srv/__init__.py"
+  "/home/hyun/ros_5_week/devel/lib/python3/dist-packages/cv_pkg/srv/_ImageClassify.py"
+  "/home/hyun/ros_5_week/devel/lib/python3/dist-packages/cv_pkg/srv/__init__.py"
   "CMakeFiles/cv_pkg_generate_messages_py"
 )
 

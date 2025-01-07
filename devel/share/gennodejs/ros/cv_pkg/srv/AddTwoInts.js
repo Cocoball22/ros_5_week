@@ -21,31 +21,22 @@ class AddTwoIntsRequest {
   constructor(initObj={}) {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
-      this.a = null;
-      this.b = null;
+      this.image_path = null;
     }
     else {
-      if (initObj.hasOwnProperty('a')) {
-        this.a = initObj.a
+      if (initObj.hasOwnProperty('image_path')) {
+        this.image_path = initObj.image_path
       }
       else {
-        this.a = 0;
-      }
-      if (initObj.hasOwnProperty('b')) {
-        this.b = initObj.b
-      }
-      else {
-        this.b = 0;
+        this.image_path = '';
       }
     }
   }
 
   static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type AddTwoIntsRequest
-    // Serialize message field [a]
-    bufferOffset = _serializer.int32(obj.a, buffer, bufferOffset);
-    // Serialize message field [b]
-    bufferOffset = _serializer.int32(obj.b, buffer, bufferOffset);
+    // Serialize message field [image_path]
+    bufferOffset = _serializer.string(obj.image_path, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -53,15 +44,15 @@ class AddTwoIntsRequest {
     //deserializes a message object of type AddTwoIntsRequest
     let len;
     let data = new AddTwoIntsRequest(null);
-    // Deserialize message field [a]
-    data.a = _deserializer.int32(buffer, bufferOffset);
-    // Deserialize message field [b]
-    data.b = _deserializer.int32(buffer, bufferOffset);
+    // Deserialize message field [image_path]
+    data.image_path = _deserializer.string(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
-    return 8;
+    let length = 0;
+    length += _getByteLength(object.image_path);
+    return length + 4;
   }
 
   static datatype() {
@@ -71,14 +62,13 @@ class AddTwoIntsRequest {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'ef8322123148e475e3e93a1f609b2f70';
+    return '65568c775bfbc96c6265c3d13d7e1a07';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    int32 a
-    int32 b
+    string image_path
     
     `;
   }
@@ -89,18 +79,11 @@ class AddTwoIntsRequest {
       msg = {};
     }
     const resolved = new AddTwoIntsRequest(null);
-    if (msg.a !== undefined) {
-      resolved.a = msg.a;
+    if (msg.image_path !== undefined) {
+      resolved.image_path = msg.image_path;
     }
     else {
-      resolved.a = 0
-    }
-
-    if (msg.b !== undefined) {
-      resolved.b = msg.b;
-    }
-    else {
-      resolved.b = 0
+      resolved.image_path = ''
     }
 
     return resolved;
@@ -111,22 +94,22 @@ class AddTwoIntsResponse {
   constructor(initObj={}) {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
-      this.sum = null;
+      this.fruit_type = null;
     }
     else {
-      if (initObj.hasOwnProperty('sum')) {
-        this.sum = initObj.sum
+      if (initObj.hasOwnProperty('fruit_type')) {
+        this.fruit_type = initObj.fruit_type
       }
       else {
-        this.sum = 0;
+        this.fruit_type = '';
       }
     }
   }
 
   static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type AddTwoIntsResponse
-    // Serialize message field [sum]
-    bufferOffset = _serializer.int32(obj.sum, buffer, bufferOffset);
+    // Serialize message field [fruit_type]
+    bufferOffset = _serializer.string(obj.fruit_type, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -134,13 +117,15 @@ class AddTwoIntsResponse {
     //deserializes a message object of type AddTwoIntsResponse
     let len;
     let data = new AddTwoIntsResponse(null);
-    // Deserialize message field [sum]
-    data.sum = _deserializer.int32(buffer, bufferOffset);
+    // Deserialize message field [fruit_type]
+    data.fruit_type = _deserializer.string(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
-    return 4;
+    let length = 0;
+    length += _getByteLength(object.fruit_type);
+    return length + 4;
   }
 
   static datatype() {
@@ -150,13 +135,13 @@ class AddTwoIntsResponse {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '0ba699c25c9418c0366f3595c0c8e8ec';
+    return '99d8fef110621c4aa23a2848c4b7110f';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    int32 sum
+    string fruit_type
     
     
     `;
@@ -168,11 +153,11 @@ class AddTwoIntsResponse {
       msg = {};
     }
     const resolved = new AddTwoIntsResponse(null);
-    if (msg.sum !== undefined) {
-      resolved.sum = msg.sum;
+    if (msg.fruit_type !== undefined) {
+      resolved.fruit_type = msg.fruit_type;
     }
     else {
-      resolved.sum = 0
+      resolved.fruit_type = ''
     }
 
     return resolved;
@@ -182,6 +167,6 @@ class AddTwoIntsResponse {
 module.exports = {
   Request: AddTwoIntsRequest,
   Response: AddTwoIntsResponse,
-  md5sum() { return 'f0b6d69ea10b0cf210cb349d58d59e8f'; },
+  md5sum() { return '4a399bc94c653d283002e008e813f40e'; },
   datatype() { return 'cv_pkg/AddTwoInts'; }
 };

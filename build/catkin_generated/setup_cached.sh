@@ -7,5 +7,4 @@
 # new environment variables
 
 # modified environment variables
-export PWD='/home/cona/catkin_ws/build'
-export PYTHONPATH="/home/cona/catkin_ws/devel/lib/python3/dist-packages:$PYTHONPATH"
+export PWD='/home/hyun/ros_5_week/build'

@@ -63,7 +63,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Generate services in the 'srv' folder
 add_service_files(
   FILES
-  AddTwoInts.srv
+  ImageClassify.srv
 
 )
 

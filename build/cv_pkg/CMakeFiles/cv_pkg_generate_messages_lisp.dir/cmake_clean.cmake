@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "/home/cona/catkin_ws/devel/share/common-lisp/ros/cv_pkg/srv/AddTwoInts.lisp"
+  "/home/hyun/ros_5_week/devel/share/common-lisp/ros/cv_pkg/srv/ImageClassify.lisp"
   "CMakeFiles/cv_pkg_generate_messages_lisp"
 )
 

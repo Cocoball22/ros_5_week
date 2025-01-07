@@ -17,56 +17,58 @@ const _getByteLength = _ros_msg_utils.getByteLength;
 
 //-----------------------------------------------------------
 
-class AddTwointsRequest {
+class fruit_classifyRequest {
   constructor(initObj={}) {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
-      this.num = null;
+      this.image_path = null;
     }
     else {
-      if (initObj.hasOwnProperty('num')) {
-        this.num = initObj.num
+      if (initObj.hasOwnProperty('image_path')) {
+        this.image_path = initObj.image_path
       }
       else {
-        this.num = 0;
+        this.image_path = '';
       }
     }
   }
 
   static serialize(obj, buffer, bufferOffset) {
-    // Serializes a message object of type AddTwointsRequest
-    // Serialize message field [num]
-    bufferOffset = _serializer.int32(obj.num, buffer, bufferOffset);
+    // Serializes a message object of type fruit_classifyRequest
+    // Serialize message field [image_path]
+    bufferOffset = _serializer.string(obj.image_path, buffer, bufferOffset);
     return bufferOffset;
   }
 
   static deserialize(buffer, bufferOffset=[0]) {
-    //deserializes a message object of type AddTwointsRequest
+    //deserializes a message object of type fruit_classifyRequest
     let len;
-    let data = new AddTwointsRequest(null);
-    // Deserialize message field [num]
-    data.num = _deserializer.int32(buffer, bufferOffset);
+    let data = new fruit_classifyRequest(null);
+    // Deserialize message field [image_path]
+    data.image_path = _deserializer.string(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
-    return 4;
+    let length = 0;
+    length += _getByteLength(object.image_path);
+    return length + 4;
   }
 
   static datatype() {
     // Returns string type for a service object
-    return 'cv_pkg/AddTwointsRequest';
+    return 'cv_pkg/fruit_classifyRequest';
   }
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '54b3c80efd6fae6e6ffff8a4b9facd69';
+    return '65568c775bfbc96c6265c3d13d7e1a07';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    int32 num
+    string image_path
     
     `;
   }
@@ -76,70 +78,70 @@ class AddTwointsRequest {
     if (typeof msg !== 'object' || msg === null) {
       msg = {};
     }
-    const resolved = new AddTwointsRequest(null);
-    if (msg.num !== undefined) {
-      resolved.num = msg.num;
+    const resolved = new fruit_classifyRequest(null);
+    if (msg.image_path !== undefined) {
+      resolved.image_path = msg.image_path;
     }
     else {
-      resolved.num = 0
+      resolved.image_path = ''
     }
 
     return resolved;
     }
 };
 
-class AddTwointsResponse {
+class fruit_classifyResponse {
   constructor(initObj={}) {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
-      this.name = null;
+      this.fruit_type = null;
     }
     else {
-      if (initObj.hasOwnProperty('name')) {
-        this.name = initObj.name
+      if (initObj.hasOwnProperty('fruit_type')) {
+        this.fruit_type = initObj.fruit_type
       }
       else {
-        this.name = '';
+        this.fruit_type = '';
       }
     }
   }
 
   static serialize(obj, buffer, bufferOffset) {
-    // Serializes a message object of type AddTwointsResponse
-    // Serialize message field [name]
-    bufferOffset = _serializer.string(obj.name, buffer, bufferOffset);
+    // Serializes a message object of type fruit_classifyResponse
+    // Serialize message field [fruit_type]
+    bufferOffset = _serializer.string(obj.fruit_type, buffer, bufferOffset);
     return bufferOffset;
   }
 
   static deserialize(buffer, bufferOffset=[0]) {
-    //deserializes a message object of type AddTwointsResponse
+    //deserializes a message object of type fruit_classifyResponse
     let len;
-    let data = new AddTwointsResponse(null);
-    // Deserialize message field [name]
-    data.name = _deserializer.string(buffer, bufferOffset);
+    let data = new fruit_classifyResponse(null);
+    // Deserialize message field [fruit_type]
+    data.fruit_type = _deserializer.string(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
     let length = 0;
-    length += _getByteLength(object.name);
+    length += _getByteLength(object.fruit_type);
     return length + 4;
   }
 
   static datatype() {
     // Returns string type for a service object
-    return 'cv_pkg/AddTwointsResponse';
+    return 'cv_pkg/fruit_classifyResponse';
   }
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'c1f3d28f1b044c871e6eff2e9fc3c667';
+    return '99d8fef110621c4aa23a2848c4b7110f';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    string name
+    string fruit_type
     
     
     `;
@@ -150,12 +152,12 @@ class AddTwointsResponse {
     if (typeof msg !== 'object' || msg === null) {
       msg = {};
     }
-    const resolved = new AddTwointsResponse(null);
-    if (msg.name !== undefined) {
-      resolved.name = msg.name;
+    const resolved = new fruit_classifyResponse(null);
+    if (msg.fruit_type !== undefined) {
+      resolved.fruit_type = msg.fruit_type;
     }
     else {
-      resolved.name = ''
+      resolved.fruit_type = ''
     }
 
     return resolved;
@@ -163,8 +165,8 @@ class AddTwointsResponse {
 };
 
 module.exports = {
-  Request: AddTwointsRequest,
-  Response: AddTwointsResponse,
-  md5sum() { return '563505b24ec7ec919ab1d0c28096de40'; },
-  datatype() { return 'cv_pkg/AddTwoints'; }
+  Request: fruit_classifyRequest,
+  Response: fruit_classifyResponse,
+  md5sum() { return '4a399bc94c653d283002e008e813f40e'; },
+  datatype() { return 'cv_pkg/fruit_classify'; }
 };

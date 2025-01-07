@@ -1,8 +1,8 @@
 
 "use strict";
 
-let AddTwoInts = require('./AddTwoInts.js')
+let ImageClassify = require('./ImageClassify.js')
 
 module.exports = {
-  AddTwoInts: AddTwoInts,
+  ImageClassify: ImageClassify,
 };

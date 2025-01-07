@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/cona/catkin_ws/devel/lib/cv_pkg/ClusterService"
-  "/home/cona/catkin_ws/devel/lib/cv_pkg/ClusterService.pdb"
+  "/home/hyun/ros_5_week/devel/lib/cv_pkg/ClusterService"
+  "/home/hyun/ros_5_week/devel/lib/cv_pkg/ClusterService.pdb"
   "CMakeFiles/ClusterService.dir/src/ClusterService.cpp.o"
 )
 

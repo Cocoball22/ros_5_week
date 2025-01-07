@@ -20,85 +20,74 @@
 
 (defclass cv_pkg::AddTwoIntsRequest
   :super ros::object
-  :slots (_a _b ))
+  :slots (_image_path ))
 
 (defmethod cv_pkg::AddTwoIntsRequest
   (:init
    (&key
-    ((:a __a) 0)
-    ((:b __b) 0)
+    ((:image_path __image_path) "")
     )
    (send-super :init)
-   (setq _a (round __a))
-   (setq _b (round __b))
+   (setq _image_path (string __image_path))
    self)
-  (:a
-   (&optional __a)
-   (if __a (setq _a __a)) _a)
-  (:b
-   (&optional __b)
-   (if __b (setq _b __b)) _b)
+  (:image_path
+   (&optional __image_path)
+   (if __image_path (setq _image_path __image_path)) _image_path)
   (:serialization-length
    ()
    (+
-    ;; int32 _a
-    4
-    ;; int32 _b
-    4
+    ;; string _image_path
+    4 (length _image_path)
     ))
   (:serialize
    (&optional strm)
    (let ((s (if strm strm
               (make-string-output-stream (send self :serialization-length)))))
-     ;; int32 _a
-       (write-long _a s)
-     ;; int32 _b
-       (write-long _b s)
+     ;; string _image_path
+       (write-long (length _image_path) s) (princ _image_path s)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
    (buf &optional (ptr- 0))
-   ;; int32 _a
-     (setq _a (sys::peek buf ptr- :integer)) (incf ptr- 4)
-   ;; int32 _b
-     (setq _b (sys::peek buf ptr- :integer)) (incf ptr- 4)
+   ;; string _image_path
+     (let (n) (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4) (setq _image_path (subseq buf ptr- (+ ptr- n))) (incf ptr- n))
    ;;
    self)
   )
 
 (defclass cv_pkg::AddTwoIntsResponse
   :super ros::object
-  :slots (_sum ))
+  :slots (_fruit_type ))
 
 (defmethod cv_pkg::AddTwoIntsResponse
   (:init
    (&key
-    ((:sum __sum) 0)
+    ((:fruit_type __fruit_type) "")
     )
    (send-super :init)
-   (setq _sum (round __sum))
+   (setq _fruit_type (string __fruit_type))
    self)
-  (:sum
-   (&optional __sum)
-   (if __sum (setq _sum __sum)) _sum)
+  (:fruit_type
+   (&optional __fruit_type)
+   (if __fruit_type (setq _fruit_type __fruit_type)) _fruit_type)
   (:serialization-length
    ()
    (+
-    ;; int32 _sum
-    4
+    ;; string _fruit_type
+    4 (length _fruit_type)
     ))
   (:serialize
    (&optional strm)
    (let ((s (if strm strm
               (make-string-output-stream (send self :serialization-length)))))
-     ;; int32 _sum
-       (write-long _sum s)
+     ;; string _fruit_type
+       (write-long (length _fruit_type) s) (princ _fruit_type s)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
    (buf &optional (ptr- 0))
-   ;; int32 _sum
-     (setq _sum (sys::peek buf ptr- :integer)) (incf ptr- 4)
+   ;; string _fruit_type
+     (let (n) (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4) (setq _fruit_type (subseq buf ptr- (+ ptr- n))) (incf ptr- n))
    ;;
    self)
   )
@@ -107,7 +96,7 @@
   :super ros::object
   :slots ())
 
-(setf (get cv_pkg::AddTwoInts :md5sum-) "f0b6d69ea10b0cf210cb349d58d59e8f")
+(setf (get cv_pkg::AddTwoInts :md5sum-) "4a399bc94c653d283002e008e813f40e")
 (setf (get cv_pkg::AddTwoInts :datatype-) "cv_pkg/AddTwoInts")
 (setf (get cv_pkg::AddTwoInts :request) cv_pkg::AddTwoIntsRequest)
 (setf (get cv_pkg::AddTwoInts :response) cv_pkg::AddTwoIntsResponse)
@@ -115,28 +104,26 @@
 (defmethod cv_pkg::AddTwoIntsRequest
   (:response () (instance cv_pkg::AddTwoIntsResponse :init)))
 
-(setf (get cv_pkg::AddTwoIntsRequest :md5sum-) "f0b6d69ea10b0cf210cb349d58d59e8f")
+(setf (get cv_pkg::AddTwoIntsRequest :md5sum-) "4a399bc94c653d283002e008e813f40e")
 (setf (get cv_pkg::AddTwoIntsRequest :datatype-) "cv_pkg/AddTwoIntsRequest")
 (setf (get cv_pkg::AddTwoIntsRequest :definition-)
-      "int32 a
-int32 b
+      "string image_path
 ---
-int32 sum
+string fruit_type
 
 ")
 
-(setf (get cv_pkg::AddTwoIntsResponse :md5sum-) "f0b6d69ea10b0cf210cb349d58d59e8f")
+(setf (get cv_pkg::AddTwoIntsResponse :md5sum-) "4a399bc94c653d283002e008e813f40e")
 (setf (get cv_pkg::AddTwoIntsResponse :datatype-) "cv_pkg/AddTwoIntsResponse")
 (setf (get cv_pkg::AddTwoIntsResponse :definition-)
-      "int32 a
-int32 b
+      "string image_path
 ---
-int32 sum
+string fruit_type
 
 ")
 
 
 
-(provide :cv_pkg/AddTwoInts "f0b6d69ea10b0cf210cb349d58d59e8f")
+(provide :cv_pkg/AddTwoInts "4a399bc94c653d283002e008e813f40e")
 
 

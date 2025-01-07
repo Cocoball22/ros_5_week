@@ -24,22 +24,17 @@ struct AddTwoIntsRequest_
   typedef AddTwoIntsRequest_<ContainerAllocator> Type;
 
   AddTwoIntsRequest_()
-    : a(0)
-    , b(0)  {
+    : image_path()  {
     }
   AddTwoIntsRequest_(const ContainerAllocator& _alloc)
-    : a(0)
-    , b(0)  {
+    : image_path(_alloc)  {
   (void)_alloc;
     }
 
 
 
-   typedef int32_t _a_type;
-  _a_type a;
-
-   typedef int32_t _b_type;
-  _b_type b;
+   typedef std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>> _image_path_type;
+  _image_path_type image_path;
 
 
 
@@ -70,8 +65,7 @@ return s;
 template<typename ContainerAllocator1, typename ContainerAllocator2>
 bool operator==(const ::cv_pkg::AddTwoIntsRequest_<ContainerAllocator1> & lhs, const ::cv_pkg::AddTwoIntsRequest_<ContainerAllocator2> & rhs)
 {
-  return lhs.a == rhs.a &&
-    lhs.b == rhs.b;
+  return lhs.image_path == rhs.image_path;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -104,12 +98,12 @@ struct IsMessage< ::cv_pkg::AddTwoIntsRequest_<ContainerAllocator> const>
 
 template <class ContainerAllocator>
 struct IsFixedSize< ::cv_pkg::AddTwoIntsRequest_<ContainerAllocator> >
-  : TrueType
+  : FalseType
   { };
 
 template <class ContainerAllocator>
 struct IsFixedSize< ::cv_pkg::AddTwoIntsRequest_<ContainerAllocator> const>
-  : TrueType
+  : FalseType
   { };
 
 template <class ContainerAllocator>
@@ -128,12 +122,12 @@ struct MD5Sum< ::cv_pkg::AddTwoIntsRequest_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "ef8322123148e475e3e93a1f609b2f70";
+    return "65568c775bfbc96c6265c3d13d7e1a07";
   }
 
   static const char* value(const ::cv_pkg::AddTwoIntsRequest_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xef8322123148e475ULL;
-  static const uint64_t static_value2 = 0xe3e93a1f609b2f70ULL;
+  static const uint64_t static_value1 = 0x65568c775bfbc96cULL;
+  static const uint64_t static_value2 = 0x6265c3d13d7e1a07ULL;
 };
 
 template<class ContainerAllocator>
@@ -152,8 +146,7 @@ struct Definition< ::cv_pkg::AddTwoIntsRequest_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "int32 a\n"
-"int32 b\n"
+    return "string image_path\n"
 ;
   }
 
@@ -172,8 +165,7 @@ namespace serialization
   {
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
-      stream.next(m.a);
-      stream.next(m.b);
+      stream.next(m.image_path);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -192,10 +184,8 @@ struct Printer< ::cv_pkg::AddTwoIntsRequest_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::cv_pkg::AddTwoIntsRequest_<ContainerAllocator>& v)
   {
-    s << indent << "a: ";
-    Printer<int32_t>::stream(s, indent + "  ", v.a);
-    s << indent << "b: ";
-    Printer<int32_t>::stream(s, indent + "  ", v.b);
+    s << indent << "image_path: ";
+    Printer<std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>>>::stream(s, indent + "  ", v.image_path);
   }
 };
 

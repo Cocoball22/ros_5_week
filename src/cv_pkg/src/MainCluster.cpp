@@ -1,10 +1,23 @@
 #include <cv_pkg/Cluster.hpp>
 
-bool add(cv_pkg::AddTwoInts::Request  &req, cv_pkg::AddTwoInts::Response &res)
+bool ClassifyImage(cv_pkg::ImageClassify::Request  &req, cv_pkg::ImageClassify::Response &res)
 {
-    res.sum = req.a + req.b;
-    ROS_INFO("request: x=%ld, y=%ld", (long int)req.a, (long int)req.b);
-    ROS_INFO("sending back response: [%ld]", (long int)res.sum);
+   ROS_INFO("Received request with image path: %s", req.image_path.c_str());
+    // 이미지 로드
+    cv::Mat classify_image = cv::imread(req.image_path);
+    if(classify_image.empty()) 
+    {
+        ROS_ERROR("Failed to load image");
+        return false;
+    }
+
+    cluster cl;
+    // TestImageAverage의 결과를 받아서 서비스 응답으로 전달
+    std::string result = cl.TestIamgeAverage(classify_image);
+
+     // 결과를 Response 메시지에 저장
+    res.fruit_type = result;  // result 필드 이름은 srv 파일 정의에 맞게 수정
+
     return true;
 }
 
@@ -16,10 +29,11 @@ int main(int argc, char **argv)
   cluster cl;
 
   cl.ImageRead();
-  cl.Test();
 
-  ros::ServiceServer service = nh.advertiseService("add_two_ints", add);
-  ROS_INFO("Ready to add two ints.");
+
+  ros::ServiceServer service = nh.advertiseService("fruit_classify", ClassifyImage);
+
+  ROS_INFO("Ready to ImageClassify.");
   ros::spin();
    
   return 0;

@@ -24,17 +24,17 @@ struct AddTwoIntsResponse_
   typedef AddTwoIntsResponse_<ContainerAllocator> Type;
 
   AddTwoIntsResponse_()
-    : sum(0)  {
+    : fruit_type()  {
     }
   AddTwoIntsResponse_(const ContainerAllocator& _alloc)
-    : sum(0)  {
+    : fruit_type(_alloc)  {
   (void)_alloc;
     }
 
 
 
-   typedef int32_t _sum_type;
-  _sum_type sum;
+   typedef std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>> _fruit_type_type;
+  _fruit_type_type fruit_type;
 
 
 
@@ -65,7 +65,7 @@ return s;
 template<typename ContainerAllocator1, typename ContainerAllocator2>
 bool operator==(const ::cv_pkg::AddTwoIntsResponse_<ContainerAllocator1> & lhs, const ::cv_pkg::AddTwoIntsResponse_<ContainerAllocator2> & rhs)
 {
-  return lhs.sum == rhs.sum;
+  return lhs.fruit_type == rhs.fruit_type;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -98,12 +98,12 @@ struct IsMessage< ::cv_pkg::AddTwoIntsResponse_<ContainerAllocator> const>
 
 template <class ContainerAllocator>
 struct IsFixedSize< ::cv_pkg::AddTwoIntsResponse_<ContainerAllocator> >
-  : TrueType
+  : FalseType
   { };
 
 template <class ContainerAllocator>
 struct IsFixedSize< ::cv_pkg::AddTwoIntsResponse_<ContainerAllocator> const>
-  : TrueType
+  : FalseType
   { };
 
 template <class ContainerAllocator>
@@ -122,12 +122,12 @@ struct MD5Sum< ::cv_pkg::AddTwoIntsResponse_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "0ba699c25c9418c0366f3595c0c8e8ec";
+    return "99d8fef110621c4aa23a2848c4b7110f";
   }
 
   static const char* value(const ::cv_pkg::AddTwoIntsResponse_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x0ba699c25c9418c0ULL;
-  static const uint64_t static_value2 = 0x366f3595c0c8e8ecULL;
+  static const uint64_t static_value1 = 0x99d8fef110621c4aULL;
+  static const uint64_t static_value2 = 0xa23a2848c4b7110fULL;
 };
 
 template<class ContainerAllocator>
@@ -146,7 +146,7 @@ struct Definition< ::cv_pkg::AddTwoIntsResponse_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "int32 sum\n"
+    return "string fruit_type\n"
 "\n"
 ;
   }
@@ -166,7 +166,7 @@ namespace serialization
   {
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
-      stream.next(m.sum);
+      stream.next(m.fruit_type);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -185,8 +185,8 @@ struct Printer< ::cv_pkg::AddTwoIntsResponse_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::cv_pkg::AddTwoIntsResponse_<ContainerAllocator>& v)
   {
-    s << indent << "sum: ";
-    Printer<int32_t>::stream(s, indent + "  ", v.sum);
+    s << indent << "fruit_type: ";
+    Printer<std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>>>::stream(s, indent + "  ", v.fruit_type);
   }
 };
 
