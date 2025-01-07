@@ -9,7 +9,7 @@ int main(int argc, char **argv)
   
 
   std::string test_path = "/home/hyun/ros_5_week/src/cv_pkg/src/test/";
-  std::string test_image[13] = {};
+  std::string test_image[30] = {};
   int n = 0;
   
 
