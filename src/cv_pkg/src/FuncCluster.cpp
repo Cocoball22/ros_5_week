@@ -304,6 +304,155 @@ std::string cluster::TestIamgeAverage(cv::Mat image)
 }
 
 // 분류
+// std::string cluster::classification(cv::Vec3b mean) 
+// {
+//   printf("      \n");
+//   std::cout << "classification" << std::endl;
+
+//   int apple_distance[3] = {};
+//   int banana_distance[3] = {};
+//   int grape_distance[3] = {};
+//   int distance[3] = {};
+
+//   int label_distance[3] = {};
+
+//   cv::Vec3b apple(0,0,255); 
+//   cv::Vec3b banana(0,255,255); 
+//   cv::Vec3b grape(128,0,128); 
+//   // printf("%d %d %d\n", apple[0], apple[1], apple[2]);
+
+//   for(int k = 0; k < 3; k++)
+//   {
+//        apple_distance[k] = getDistance(apple, current_centroids[k]);
+
+//   }
+//   for(int k = 0; k < 3; k++)
+//   {
+//        banana_distance[k] = getDistance(banana, current_centroids[k]);
+//   }
+//   for(int k = 0; k < 3; k++)
+//   {
+//        grape_distance[k] = getDistance(grape, current_centroids[k]);
+//   }
+
+//   std::cout <<"apple_distance: " << apple_distance[0] << " " << apple_distance[1] << " " << apple_distance[2] << std::endl;
+//   std::cout <<"banana_distance: " << banana_distance[0] << " " << banana_distance[1] << " " << banana_distance[2] << std::endl;
+//   std::cout <<"grape_distance: " << grape_distance[0] << " " << grape_distance[1] << " " << grape_distance[2] << std::endl;
+
+//   label_distance[0] = apple_distance[0] < apple_distance[1] ? (apple_distance[0] < apple_distance[2] ? apple_distance[0] : apple_distance[2]) : (apple_distance[1] < apple_distance[2] ? apple_distance[1] : apple_distance[2]);
+//   label_distance[1] = banana_distance[0] < banana_distance[1] ? (banana_distance[0] < banana_distance[2] ? banana_distance[0] : banana_distance[2]) : (banana_distance[1] < banana_distance[2] ? banana_distance[1] : banana_distance[2]);
+//   label_distance[2] = grape_distance[0] < grape_distance[1] ? (grape_distance[0] < grape_distance[2] ? grape_distance[0] : grape_distance[2]) : (grape_distance[1] < grape_distance[2] ? grape_distance[1] : grape_distance[2]);
+//   // 0번 사과 1번 바나나 2번 포도
+//   // label_distance[0] = std::min({apple_distance[0], apple_distance[1], apple_distance[2]});
+//   // label_distance[1] = std::min({banana_distance[0], banana_distance[1], banana_distance[2]});
+//   // label_distance[2] = std::min({grape_distance[0], grape_distance[1], grape_distance[2]});
+
+
+//   std::cout <<"최소거리 1.사과 2.바나나 3.포도 : " << label_distance[0] << " " << label_distance[1] << " " << label_distance[2] << std::endl;
+
+//   int apple_n = 0, banana_n = 0, grape_n = 0;
+
+//   for(int k = 0; k < 3; k++)
+//   {
+//     if(apple_distance[k] == label_distance[0])
+//     {
+//       apple_n = k;
+//     }
+
+//     else if(banana_distance[k] == label_distance[1])
+//     {
+//       banana_n = k;
+//     }
+
+//     else if(grape_distance[k] == label_distance[2])
+//     {
+//       grape_n = k;
+//     }
+
+//   }
+
+//   printf("중심점의 번호를 구분해 최종 배열 번수 1.사과 2.바나나 3.포도 : %d %d %d \n", apple_n, banana_n, grape_n);
+
+//   std::cout << "사과 : " << current_centroids[apple_n] << " " << "바나나 : " << current_centroids[banana_n] << " " << "포도 : " << current_centroids[grape_n] << std::endl;
+
+//   // 선택한 이미지가 들어오고 중심점 값의 차이 중에 가장 작은 값이 과일을 분류 해야하니까
+//   // for(int k = 0; k < 3; k++)
+//   // {
+//   //   // std::cout << "current_centroids: " << current_centroids[k] << std::endl;
+//   //   distance[k] = getDistance(mean, current_centroids[k]);
+//   // }
+
+//   // 라벨링 한 사과 바나나 포도와 서비스에서 요청한 이미지와 비교
+//   distance[0] = getDistance(mean, current_centroids[apple_n]);
+//   distance[1] = getDistance(mean, current_centroids[banana_n]);
+//   distance[2] = getDistance(mean, current_centroids[grape_n]);
+
+//   std::cout <<"평균 이미지 distance: " << "사과 " << distance[0] << " "  << "바나나 " << distance[1] << " " << "포도 "  << distance[2]  << " " << std::endl;
+
+//    // 가장 가까운 중심점 찾기 임의의 최저점을 잡고 3개와 비교 처음 label_distance의 값이 0이 되는 이유는
+//    // bgr 레이블 값을 정해져 있고 그 값을 빼고 난 결과 
+   
+//   int min = distance[0] < distance[1] ? (distance[0] < distance[2] ? distance[0] : distance[2]) : (distance[1] < distance[2] ? distance[1] : distance[2]);
+//   int closest_centroid = 0;
+//   printf("%d \n", min);
+//   for(int k = 0; k < 3; k++) 
+//   {
+//     if(distance[k] < min) // 사과 바나나 포도 중에서 가장 거리가 작은 번수를 구함 최소 거리 값 보다 크면 최소값 변경
+//     {
+//       min = distance[k];
+//       // closest_centroid = k;
+//       printf("%d \n", min);
+//     }
+//   }
+//   // printf("%d",closest_centroid);
+
+//   // std::cout << "가장 가까운 점 번호: " << closest_centroid << std::endl;
+
+//   std::string result;
+
+//   // 거리가 가장 가까운 중심점이 라벨링한 과일에 해당하는지 확인
+//   if(min == distance[0])
+//   {
+//     result = "apple";
+//     std::cout << "이 이미지는 사과입니다." << std::endl;
+//   }
+//   if(min == distance[1]) 
+//   {
+//     result = "banana";
+//     std::cout << "이 이미지는 바나나입니다." << std::endl;
+//   }
+//   if(min == distance[2]) 
+//   {
+//     result = "grape";
+//     std::cout << "이 이미지는 포도입니다." << std::endl;
+//   }
+
+//   return result;
+// }
+
+// std::string cluster::classification(cv::Vec3b mean) 
+// {
+//     // 각 centroid의 특성 파악
+//     int centroid_label[3]; // 0:포도, 1:바나나, 2:사과
+
+//     for(int i = 0; i < 3; i++) 
+//     {
+//         // BGR 값 중 가장 큰 값을 찾아서 라벨링
+//         if(current_centroids[i][2] > current_centroids[i][1] && current_centroids[i][2] > current_centroids[i][0]) 
+//         {
+//             centroid_label[i] = 0; // R이 가장 크면 사과
+//         }
+//         else if(current_centroids[i][1] > current_centroids[i][2] && current_centroids[i][1] > current_centroids[i][0]) 
+//         {
+//             centroid_label[i] = 1; // G가 가장 크면 바나나
+//         }
+//         else 
+//         {
+//             centroid_label[i] = 2; // B가 가장 크면 포도
+//         }
+// }
+
+// 분류
 std::string cluster::classification(cv::Vec3b mean) 
 {
   printf("      \n");
